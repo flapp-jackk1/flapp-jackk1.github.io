@@ -1,74 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NovaLabs • Space</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: url('background_image.png') no-repeat center center fixed; /* Replace with your PNG */
+      font-family: 'Orbitron', sans-serif;
+      background: url('background_image.png') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
     }
-
-    header {
-      background: transparent; /* transparent so bg shows */
+    header, footer {
+      background: rgba(0, 0, 0, 0.85);
       padding: 1em;
       text-align: center;
-      border-bottom: 2px solid rgba(0, 204, 255, 0.3); /* subtle translucent blue line */
+      border-bottom: 2px solid rgba(0, 204, 255, 0.5);
+      border-top: 1px solid rgba(0, 204, 255, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-
     header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 2.5rem;
       margin: 0;
-      color: #00ccff; /* entire title in nova blue */
+      font-size: 2rem;
+      color: #00ccff; /* Nova blue */
     }
-
     nav {
       margin-top: 0.5em;
     }
-
     nav a {
-      font-family: 'Roboto', sans-serif;
-      color: #fff; /* keep nav white for readability */
+      color: #fff;
       text-decoration: none;
       margin: 0 1em;
-      font-weight: 700;
-      transition: color 0.3s ease;
+      font-weight: bold;
     }
-
     nav a:hover {
-      color: #00ccff; /* blue highlight on hover */
       text-decoration: underline;
     }
-
     section {
-      background: rgba(0, 0, 0, 0.5); /* 50% transparent black */
+      background: rgba(0, 0, 0, 0.65); /* 65% opacity black */
       border-radius: 8px;
       padding: 2em;
       max-width: 800px;
       margin: 2em auto;
-      box-shadow: 0 0 10px rgba(0, 204, 255, 0.15); /* subtle blue glow */
+      box-shadow: 0 0 10px rgba(0, 204, 255, 0.15);
     }
-
     h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      border-bottom: 2px solid rgba(0, 204, 255, 0.3);
+      border-bottom: 2px solid #333;
       padding-bottom: 0.5em;
-      margin-top: 0;
-      color: #00ccff;
+      color: #fff;
     }
-
     a.button {
-      font-family: 'Roboto', sans-serif;
       display: inline-block;
       margin-top: 1em;
       padding: 0.5em 1em;
@@ -76,44 +62,25 @@
       color: #000;
       text-decoration: none;
       border-radius: 5px;
-      font-weight: 700;
-      transition: background 0.3s ease;
+      font-weight: bold;
     }
-
     a.button:hover {
       background: #0099cc;
     }
-
-    footer {
-      text-align: center;
-      padding: 2em;
-      font-size: 0.8em;
-      background: transparent;
-      border-top: 1px solid rgba(0, 204, 255, 0.3);
-      color: #00ccff;
-      font-family: 'Roboto', sans-serif;
+    ul {
+      padding-left: 1.2em;
     }
-
-    /* TikTok link */
-    section#projects ul li a {
-      color: #00ccff;
-      font-weight: 700;
+    #projects ul li a {
+      color: #00ccff; /* Nova blue for TikTok link */
+      font-weight: bold;
       text-decoration: none;
     }
-
-    section#projects ul li a:hover {
+    #projects ul li a:hover {
       text-decoration: underline;
     }
-
-    /* Other links inside paragraphs */
-    p a {
-      color: #00ccff;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    p a:hover {
-      text-decoration: underline;
+    footer p {
+      margin: 0;
+      color: #0b0c2a; /* Same as the bottom gradient's atmospheric blue */
     }
   </style>
 </head>
@@ -130,35 +97,35 @@
   </header>
 
   <section id="home">
-    <h2>Welcome to NovaLabs • Space</h2>
+    <h2>Welcome to NovaLabs</h2>
     <p>We invite you to a better future, filled with peace, sustainability, and innovation. - NOVA. Tomorrow is a new day.</p>
   </section>
 
   <section id="research">
     <h2>Featured Research</h2>
-    <p>Upcoming paper: <em>'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method'</em>, 00:00 UTC, Sat 19th July</p>
+    <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
     <a href="paper.pdf" target="_blank" class="button">Read the Full Paper</a>
   </section>
 
   <section id="projects">
     <h2>Current Projects</h2>
     <ul>
-      <li>Socials: Follow our TikTok, stay tuned on progress of paper, sneak peeks, and more content. <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener">@novalabs.tiktok</a></li>
+      <li>Socials: Follow our TikTok, stay tuned on progress of paper, sneak peaks, and more content. <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank">@novalabs.tiktok</a></li>
     </ul>
   </section>
 
   <section id="about">
-    <h2>About NovaLabs • Space</h2>
-    <p>NovaLabs is a student-led initiative, created to spread the word about how exciting the field of astronomy and space can truly be. This project started off as nothing, just a small idea on the back burner. Until it wasn't. NovaLabs has evolved into something great, and we can only keep evolving with the help of you.</p>
+    <h2>About NovaLabs</h2>
+    <p>NovaLabs is a student-led initiative, created to spread the word about how exciting the field of astronomy and space can truly be. This project started off as nothing, just a small idea on the backburner. Until it wasn't. NovaLabs has evolved into something great, and we can only keep evolving with the help of you.</p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:socials.novalabs@gmail.com">socials.novalabs@gmail.com</a></p>
+    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #00ccff;">socials.novalabs@gmail.com</a></p>
   </section>
 
   <footer>
-    <p>© 2025 NovaLabs • Space. All rights reserved.</p>
+    <p>&copy; 2025 NovaLabs. All rights reserved.</p>
   </footer>
 </body>
 </html>
