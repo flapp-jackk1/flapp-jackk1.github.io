@@ -60,7 +60,8 @@
       justify-content: flex-end;
       min-width: 220px;
     }
-    nav a, nav button.dark-mode-toggle {
+    nav a,
+    nav button.dark-mode-toggle {
       white-space: nowrap;
       cursor: pointer;
     }
@@ -160,6 +161,8 @@
         transition: transform 0.3s ease;
         z-index: 9;
         border-left: 2px solid #005f99;
+        /* Hide nav by default on mobile */
+        display: flex;
       }
       nav.open {
         transform: translateX(0);
@@ -293,8 +296,12 @@
       font-size: 0.9em;
       color: #005f99;
       cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       user-select: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      align-self: center;
+      margin-top: 1em;
+      width: 100%;
+      max-width: 150px;
     }
     .dark-mode-toggle:hover,
     .dark-mode-toggle:focus {
@@ -303,8 +310,8 @@
       outline: none;
     }
     body.dark-mode .dark-mode-toggle {
-      border-color: #3399ff;
       color: #3399ff;
+      border-color: #3399ff;
     }
     body.dark-mode .dark-mode-toggle:hover,
     body.dark-mode .dark-mode-toggle:focus {
@@ -315,122 +322,81 @@
 </head>
 <body>
   <header>
-    <img src="https://cdn.novalabs.space/brand/nova_symbol_transparent.svg" alt="NovaLabs Logo" />
-    
-    <!-- Hamburger button -->
-    <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+    <img src="logo.png" alt="NovaLabs Logo" />
+    <nav id="nav-menu" aria-label="Primary navigation">
+      <a href="#section1">Section 1</a>
+      <a href="#section2">Section 2</a>
+      <a href="#section3">Section 3</a>
+      <button class="dark-mode-toggle" aria-pressed="false" id="dark-mode-toggle">Toggle Dark Mode</button>
+    </nav>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menu-toggle">
       <span></span>
       <span></span>
       <span></span>
     </button>
-
-    <nav id="primary-navigation" aria-label="Primary navigation">
-      <a href="#design">Design</a>
-      <a href="#technology">Technology</a>
-      <a href="#people">People</a>
-      <a href="#planet">Planet</a>
-      <button class="dark-mode-toggle" aria-pressed="false">Dark Mode</button>
-    </nav>
   </header>
 
   <main>
-    <section id="design">
-      <h2>Design</h2>
-      <p>Next-generation space vehicles for the future of exploration and commerce.</p>
-      <p>Building the tech that powers humanity's next giant leap.</p>
-      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
+    <section id="section1">
+      <h2>Section 1</h2>
+      <p>Content for section 1 goes here.</p>
     </section>
-
-    <section id="technology">
-      <h2>Technology</h2>
-      <p>Innovative propulsion, AI systems, and hardware that push the envelope.</p>
-      <p>Research and development driving new breakthroughs in aerospace engineering.</p>
-      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
+    <section id="section2">
+      <h2>Section 2</h2>
+      <p>Content for section 2 goes here.</p>
     </section>
-
-    <section id="people">
-      <h2>People</h2>
-      <p>A team of passionate scientists, engineers, and visionaries committed to progress.</p>
-      <p>Collaborations with leading space agencies and educational institutions.</p>
-      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
-    </section>
-
-    <section id="planet">
-      <h2>Planet</h2>
-      <p>Focus on sustainability and planetary stewardship beyond Earth.</p>
-      <p>Developing technologies to support life and environments on other worlds.</p>
-      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
+    <section id="section3">
+      <h2>Section 3</h2>
+      <p>Content for section 3 goes here.</p>
     </section>
   </main>
 
   <footer>
-    <div>© 2025 NovaLabs. All rights reserved.</div>
+    <p>&copy; 2025 NovaLabs. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://twitter.com/nova_labs" target="_blank" rel="noopener" aria-label="Twitter">
-        <img src="https://cdn.novalabs.space/social/twitter.svg" alt="Twitter icon" />
-      </a>
-      <a href="https://discord.gg/3bQ82MyEYc" target="_blank" rel="noopener" aria-label="Discord">
-        <img src="https://cdn.novalabs.space/social/discord.svg" alt="Discord icon" />
-      </a>
-      <a href="https://mastodon.social/@nova_labs" target="_blank" rel="noopener" aria-label="Mastodon">
-        <img src="https://cdn.novalabs.space/social/mastodon.svg" alt="Mastodon icon" />
-      </a>
-      <a href="https://matrix.to/#/#nova_labs:matrix.org" target="_blank" rel="noopener" aria-label="Matrix">
-        <img src="https://cdn.novalabs.space/social/matrix.svg" alt="Matrix icon" />
-      </a>
+      <a href="#" aria-label="Twitter"><img src="twitter.svg" alt="Twitter icon" /></a>
+      <a href="#" aria-label="Facebook"><img src="facebook.svg" alt="Facebook icon" /></a>
+      <a href="#" aria-label="LinkedIn"><img src="linkedin.svg" alt="LinkedIn icon" /></a>
     </div>
   </footer>
 
   <script>
     // Hamburger menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('primary-navigation');
-    const darkToggle = nav.querySelector('.dark-mode-toggle');
-    const navLinks = nav.querySelectorAll('a');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
 
     menuToggle.addEventListener('click', () => {
       const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      menuToggle.setAttribute('aria-expanded', !expanded);
       menuToggle.classList.toggle('active');
-      nav.classList.toggle('open');
+      navMenu.classList.toggle('open');
     });
 
-    // Close menu when clicking a nav link on mobile
-    function closeMenu() {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.classList.remove('active');
-      nav.classList.remove('open');
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Load saved preference
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      body.classList.add('dark-mode');
+      darkModeToggle.setAttribute('aria-pressed', 'true');
     }
-    navLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
+
+    darkModeToggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark-mode');
+      darkModeToggle.setAttribute('aria-pressed', isDark);
+      localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
     });
 
-    // Dark mode toggle logic
-    function setDarkMode(enabled) {
-      if (enabled) {
-        document.body.classList.add('dark-mode');
-        darkToggle.textContent = 'Light Mode';
-        darkToggle.setAttribute('aria-pressed', 'true');
-      } else {
-        document.body.classList.remove('dark-mode');
-        darkToggle.textContent = 'Dark Mode';
-        darkToggle.setAttribute('aria-pressed', 'false');
-      }
-      localStorage.setItem('darkMode', enabled ? 'true' : 'false');
-    }
-
-    // Load saved dark mode preference
-    const savedMode = localStorage.getItem('darkMode');
-    if (savedMode === 'true') {
-      setDarkMode(true);
-    } else {
-      setDarkMode(false);
-    }
-
-    // Toggle dark mode button
-    darkToggle.addEventListener('click', () => {
-      const isDark = document.body.classList.contains('dark-mode');
-      setDarkMode(!isDark);
+    // Close menu on link click (mobile)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('open')) {
+          menuToggle.classList.remove('active');
+          navMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
   </script>
 </body>
