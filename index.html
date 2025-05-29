@@ -5,16 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- SEO Meta Tags -->
   <meta name="description" content="Nova-Labs • Space - Independent astronomy research project." />
   <meta name="keywords" content="Nova, Labs, Nova Labs, nova labs space, NovaLabs dot Space, astronomy, research, exoplanet, student space initiative, space, nova-labs • space, novalabs, Nova-Labs • Space" />
   <meta name="author" content="NovaLabs Space" />
   <meta name="robots" content="index, follow" />
   
-  <!-- Title -->
   <title>Nova-Labs • Space | Astronomy and Space Research</title>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 
   <style>
@@ -26,9 +23,6 @@
       color: #fff;
     }
     header {
-      position: fixed;
-      width: 100%;
-      top: 0;
       background: rgba(0, 0, 0, 0.65);
       padding: 1em;
       text-align: center;
@@ -57,10 +51,9 @@
     section {
       padding: 2em;
       max-width: 800px;
-      margin: auto;
+      margin: 4em auto 0 auto;
       background: rgba(0, 0, 0, 0.65);
       border-radius: 10px;
-      margin-top: 6em;
     }
     h2 {
       border-bottom: 2px solid #333;
@@ -77,6 +70,7 @@
       border-radius: 5px;
       font-weight: bold;
       transition: background-color 0.3s ease;
+      cursor: pointer;
     }
     a.button:hover {
       background: #0099cc;
@@ -97,6 +91,62 @@
       border-top: 1px solid #005f99;
       color: #fff;
       margin-top: 3em;
+    }
+
+    /* Container for popups fixed at bottom center */
+    #popup-container {
+      position: fixed;
+      bottom: 1em;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column-reverse; /* New popups added at bottom */
+      gap: 0.5em;
+      z-index: 2000;
+      max-width: 90vw;
+      pointer-events: none; /* Let clicks pass through except popup itself */
+    }
+
+    /* Individual popup styling */
+    .popup-message {
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #00ccff;
+      padding: 1em 2em;
+      border: 1px solid #00ccff;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 8px #00ccffaa;
+      opacity: 0;
+      transform: translateY(100%); /* Start below viewport */
+      pointer-events: auto; /* Allow interaction with popups if needed */
+      animation: slideIn 0.5s forwards;
+      white-space: nowrap;
+      user-select: none;
+      font-size: 1rem;
+      min-width: 280px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    /* Slide popup up from bottom */
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Fade out animation */
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(50%);
+        height: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-width: 0;
+      }
     }
   </style>
 </head>
@@ -120,7 +170,7 @@
   <section id="research">
     <h2>Featured Research</h2>
     <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
-    <a href="paper.pdf" target="_blank" class="button">Read the Full Paper</a>
+    <a href="paper.pdf" target="_blank" class="button" id="read-paper-button">Read the Full Paper</a>
   </section>
 
   <section id="projects">
@@ -146,5 +196,51 @@
       Image Credit: “Islands in the Sky” — NASA astronaut Jeff Williams, Expedition 47, International Space Station, March 3, 2016.
     </p>
   </footer>
+
+  <!-- Popup container -->
+  <div id="popup-container"></div>
+
+  <script>
+    const readButton = document.getElementById('read-paper-button');
+    const popupContainer = document.getElementById('popup-container');
+    const MAX_POPUPS = 3;
+
+    readButton.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      // Create new popup element
+      const popup = document.createElement('div');
+      popup.className = 'popup-message';
+      popup.textContent = "This isn’t available yet, check in later.";
+
+      // Add popup to container
+      popupContainer.appendChild(popup);
+
+      // If more than max popups, remove the oldest (top) with fade out
+      if (popupContainer.children.length > MAX_POPUPS) {
+        const oldest = popupContainer.children[popupContainer.children.length - MAX_POPUPS - 1];
+        if (oldest) {
+          // Animate fade out
+          oldest.style.animation = 'fadeOut 0.5s forwards';
+          // Remove from DOM after animation
+          oldest.addEventListener('animationend', () => {
+            if (oldest.parentElement === popupContainer) {
+              popupContainer.removeChild(oldest);
+            }
+          });
+        }
+      }
+
+      // Remove popup after 3 seconds with fade out
+      setTimeout(() => {
+        popup.style.animation = 'fadeOut 0.5s forwards';
+        popup.addEventListener('animationend', () => {
+          if (popup.parentElement === popupContainer) {
+            popupContainer.removeChild(popup);
+          }
+        });
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
