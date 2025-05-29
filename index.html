@@ -11,7 +11,7 @@
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to bottom, #000011 0%, #000033 30%, #001155 50%, #003366 70%, #87ceeb 100%);
+      background: linear-gradient(180deg, #000011 0%, #0b0c2a 20%, #2c4f7c 70%, #a6d0f7 100%);
       color: #fff;
     }
     header {
@@ -28,26 +28,28 @@
       margin-top: 0.5em;
     }
     nav a {
-      color: #33ccff;
-      text-shadow: 0 0 5px #33ccff;
+      color: #00ccff;
       text-decoration: none;
       margin: 0 1em;
       font-weight: bold;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
+      /* removed glow */
     }
     nav a:hover {
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
       text-decoration: underline;
+      /* no glow */
     }
     section {
-      padding: 2em;
       max-width: 800px;
-      margin: auto;
+      margin: 2em auto;
+      background: rgba(20, 30, 50, 0.8);
+      padding: 1.5em 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 204, 255, 0.3);
     }
     h2 {
       border-bottom: 2px solid #333;
       padding-bottom: 0.5em;
+      margin-top: 0;
     }
     a.button {
       display: inline-block;
@@ -57,7 +59,7 @@
       color: #000;
       text-decoration: none;
       border-radius: 5px;
-      transition: background 0.3s ease;
+      font-weight: bold;
     }
     a.button:hover {
       background: #0099cc;
@@ -68,18 +70,7 @@
       font-size: 0.8em;
       background: #0d0d2b;
       border-top: 1px solid #1f1f4a;
-    }
-    a.tiktok-link {
-      color: #33ccff;
-      text-shadow: 0 0 5px #33ccff;
-      font-weight: bold;
-      text-decoration: none;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    a.tiktok-link:hover {
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-      text-decoration: underline;
+      color: #a6d0f7; /* matching bottom gradient light blue */
     }
   </style>
 </head>
@@ -109,7 +100,7 @@
   <section id="projects">
     <h2>Current Projects</h2>
     <ul>
-      <li>Socials: Follow our TikTok <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" class="tiktok-link">@novalabs.tiktok</a></li>
+      <li>Socials: Follow our TikTok <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" style="color: #00ccff; text-decoration: underline;">@novalabs.tiktok</a></li>
     </ul>
   </section>
 
@@ -120,7 +111,7 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #33ccff; text-shadow: 0 0 5px #33ccff;">contact@nova-labs.space</a></p>
+    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #00ccff">contact@nova-labs.space</a></p>
   </section>
 
   <footer>
