@@ -5,13 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
+  <!-- SEO Meta Tags -->
   <meta name="description" content="Nova-Labs • Space - Independent astronomy research project." />
   <meta name="keywords" content="Nova, Labs, Nova Labs, nova labs space, NovaLabs dot Space, astronomy, research, exoplanet, student space initiative, space, nova-labs • space, novalabs, Nova-Labs • Space" />
   <meta name="author" content="NovaLabs Space" />
   <meta name="robots" content="index, follow" />
   
+  <!-- Title -->
   <title>Nova-Labs • Space | Astronomy and Space Research</title>
 
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 
   <style>
@@ -23,6 +26,8 @@
       color: #fff;
     }
     header {
+      position: relative; /* changed from fixed so it scrolls */
+      width: 100%;
       background: rgba(0, 0, 0, 0.65);
       padding: 1em;
       text-align: center;
@@ -51,9 +56,10 @@
     section {
       padding: 2em;
       max-width: 800px;
-      margin: 4em auto 0 auto;
+      margin: auto;
       background: rgba(0, 0, 0, 0.65);
       border-radius: 10px;
+      margin-top: 4em; /* moved down so header won't overlap */
     }
     h2 {
       border-bottom: 2px solid #333;
@@ -93,21 +99,23 @@
       margin-top: 3em;
     }
 
-    /* Container for popups fixed at bottom center */
+    /* Popup Container and messages */
+
     #popup-container {
       position: fixed;
       bottom: 1em;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      flex-direction: column-reverse; /* New popups added at bottom */
+      flex-direction: column; /* normal stack: bottom oldest, top newest */
       gap: 0.5em;
       z-index: 2000;
       max-width: 90vw;
-      pointer-events: none; /* Let clicks pass through except popup itself */
+      pointer-events: none;
+      align-items: center;
+      /* no max height, let them grow */
     }
 
-    /* Individual popup styling */
     .popup-message {
       background-color: rgba(0, 0, 0, 0.85);
       color: #00ccff;
@@ -117,26 +125,25 @@
       font-weight: bold;
       box-shadow: 0 0 8px #00ccffaa;
       opacity: 0;
-      transform: translateY(100%); /* Start below viewport */
-      pointer-events: auto; /* Allow interaction with popups if needed */
-      animation: slideIn 0.5s forwards;
+      transform: translateY(100%); /* start below */
+      pointer-events: auto;
       white-space: nowrap;
       user-select: none;
       font-size: 1rem;
       min-width: 280px;
       max-width: 400px;
       text-align: center;
+
+      animation: slideUpIn 0.5s forwards;
     }
 
-    /* Slide popup up from bottom */
-    @keyframes slideIn {
+    @keyframes slideUpIn {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    /* Fade out animation */
     @keyframes fadeOut {
       to {
         opacity: 0;
@@ -170,7 +177,7 @@
   <section id="research">
     <h2>Featured Research</h2>
     <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
-    <a href="paper.pdf" target="_blank" class="button" id="read-paper-button">Read the Full Paper</a>
+    <a href="paper.pdf" target="_blank" class="button" id="read-paper-btn">Read the Full Paper</a>
   </section>
 
   <section id="projects">
@@ -201,28 +208,25 @@
   <div id="popup-container"></div>
 
   <script>
-    const readButton = document.getElementById('read-paper-button');
+    const readButton = document.getElementById('read-paper-btn');
     const popupContainer = document.getElementById('popup-container');
     const MAX_POPUPS = 3;
 
     readButton.addEventListener('click', (event) => {
-      event.preventDefault();
+      event.preventDefault(); // prevent link navigation
 
-      // Create new popup element
       const popup = document.createElement('div');
       popup.className = 'popup-message';
       popup.textContent = "This isn’t available yet, check in later.";
 
-      // Add popup to container
+      // Append popup at the END (top of stack visually)
       popupContainer.appendChild(popup);
 
-      // If more than max popups, remove the oldest (top) with fade out
+      // If more than max, remove oldest (bottom = first child)
       if (popupContainer.children.length > MAX_POPUPS) {
-        const oldest = popupContainer.children[popupContainer.children.length - MAX_POPUPS - 1];
+        const oldest = popupContainer.children[0];
         if (oldest) {
-          // Animate fade out
           oldest.style.animation = 'fadeOut 0.5s forwards';
-          // Remove from DOM after animation
           oldest.addEventListener('animationend', () => {
             if (oldest.parentElement === popupContainer) {
               popupContainer.removeChild(oldest);
@@ -231,7 +235,7 @@
         }
       }
 
-      // Remove popup after 3 seconds with fade out
+      // Auto fadeout current popup after 3 seconds
       setTimeout(() => {
         popup.style.animation = 'fadeOut 0.5s forwards';
         popup.addEventListener('animationend', () => {
