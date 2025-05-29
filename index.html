@@ -60,7 +60,7 @@
       justify-content: flex-end;
       min-width: 220px;
     }
-    nav a {
+    nav a, nav button.dark-mode-toggle {
       white-space: nowrap;
       cursor: pointer;
     }
@@ -164,7 +164,8 @@
       nav.open {
         transform: translateX(0);
       }
-      nav a {
+      nav a,
+      nav button.dark-mode-toggle {
         white-space: normal;
         font-size: 1.2em;
       }
@@ -292,12 +293,8 @@
       font-size: 0.9em;
       color: #005f99;
       cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       user-select: none;
-      align-self: center;
-      margin-top: 1em;
-      width: 100%;
-      max-width: 150px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     .dark-mode-toggle:hover,
     .dark-mode-toggle:focus {
@@ -306,8 +303,8 @@
       outline: none;
     }
     body.dark-mode .dark-mode-toggle {
-      color: #3399ff;
       border-color: #3399ff;
+      color: #3399ff;
     }
     body.dark-mode .dark-mode-toggle:hover,
     body.dark-mode .dark-mode-toggle:focus {
@@ -318,107 +315,122 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="NovaLabs Logo" />
+    <img src="https://cdn.novalabs.space/brand/nova_symbol_transparent.svg" alt="NovaLabs Logo" />
     
-    <!-- Hamburger menu button -->
+    <!-- Hamburger button -->
     <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <nav id="primary-navigation">
-      <a href="#home" tabindex="0">Home</a>
-      <a href="#research" tabindex="0">Research</a>
-      <a href="#projects" tabindex="0">Projects</a>
-      <a href="#about" tabindex="0">About</a>
-      <a href="#contact" tabindex="0">Contact</a>
-      <button class="dark-mode-toggle" aria-pressed="false" type="button">Dark Mode</button>
+    <nav id="primary-navigation" aria-label="Primary navigation">
+      <a href="#design">Design</a>
+      <a href="#technology">Technology</a>
+      <a href="#people">People</a>
+      <a href="#planet">Planet</a>
+      <button class="dark-mode-toggle" aria-pressed="false">Dark Mode</button>
     </nav>
   </header>
 
   <main>
-    <section id="home">
-      <h2>Welcome to NovaLabs Space</h2>
-      <p>Building cool stuff for the fun of it, exploring the final frontier with cutting-edge tech and ideas.</p>
+    <section id="design">
+      <h2>Design</h2>
+      <p>Next-generation space vehicles for the future of exploration and commerce.</p>
+      <p>Building the tech that powers humanity's next giant leap.</p>
+      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
     </section>
 
-    <section id="research">
-      <h2>Research</h2>
-      <p>Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method.</p>
-      <button class="btn-soon" aria-disabled="true" title="Coming soon">Paper Coming Soon</button>
+    <section id="technology">
+      <h2>Technology</h2>
+      <p>Innovative propulsion, AI systems, and hardware that push the envelope.</p>
+      <p>Research and development driving new breakthroughs in aerospace engineering.</p>
+      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>Designing advanced rovers, AI systems for space exploration, and innovative propulsion concepts.</p>
+    <section id="people">
+      <h2>People</h2>
+      <p>A team of passionate scientists, engineers, and visionaries committed to progress.</p>
+      <p>Collaborations with leading space agencies and educational institutions.</p>
+      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
     </section>
 
-    <section id="about">
-      <h2>About NovaLabs</h2>
-      <p>NovaLabs is an anonymous multidisciplinary company dedicated to pushing humanity’s reach into space.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: info@novalabs.space</p>
-      <p>Follow us on social media: Twitter, LinkedIn, Instagram</p>
+    <section id="planet">
+      <h2>Planet</h2>
+      <p>Focus on sustainability and planetary stewardship beyond Earth.</p>
+      <p>Developing technologies to support life and environments on other worlds.</p>
+      <p><a href="#" class="btn-soon" aria-disabled="true" tabindex="-1">Coming Soon</a></p>
     </section>
   </main>
 
   <footer>
-    <div class="social-icons" aria-label="Social Media Links">
-      <a href="mailto:socials.novalabs@gmail.com" aria-label="Email NovaLabs">
-        <img src="gmail.png" alt="Gmail Icon" />
+    <div>© 2025 NovaLabs. All rights reserved.</div>
+    <div class="social-icons">
+      <a href="https://twitter.com/nova_labs" target="_blank" rel="noopener" aria-label="Twitter">
+        <img src="https://cdn.novalabs.space/social/twitter.svg" alt="Twitter icon" />
       </a>
-      <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener" aria-label="NovaLabs TikTok">
-        <img src="tiktok.png" alt="TikTok Icon" />
+      <a href="https://discord.gg/3bQ82MyEYc" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="https://cdn.novalabs.space/social/discord.svg" alt="Discord icon" />
       </a>
-    </div>
-    <div>
-      &copy; 2025 NovaLabs. All rights reserved.
+      <a href="https://mastodon.social/@nova_labs" target="_blank" rel="noopener" aria-label="Mastodon">
+        <img src="https://cdn.novalabs.space/social/mastodon.svg" alt="Mastodon icon" />
+      </a>
+      <a href="https://matrix.to/#/#nova_labs:matrix.org" target="_blank" rel="noopener" aria-label="Matrix">
+        <img src="https://cdn.novalabs.space/social/matrix.svg" alt="Matrix icon" />
+      </a>
     </div>
   </footer>
 
   <script>
-    // Toggle navigation menu on small screens
+    // Hamburger menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('primary-navigation');
+    const darkToggle = nav.querySelector('.dark-mode-toggle');
+    const navLinks = nav.querySelectorAll('a');
 
     menuToggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('open');
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
       menuToggle.classList.toggle('active');
-      menuToggle.setAttribute('aria-expanded', isOpen);
+      nav.classList.toggle('open');
     });
 
-    // Dark mode toggle
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    const body = document.body;
+    // Close menu when clicking a nav link on mobile
+    function closeMenu() {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.classList.remove('active');
+      nav.classList.remove('open');
+    }
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
 
-    // Check saved preference in localStorage
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      body.classList.add('dark-mode');
-      darkModeToggle.textContent = 'Light Mode';
-      darkModeToggle.setAttribute('aria-pressed', 'true');
+    // Dark mode toggle logic
+    function setDarkMode(enabled) {
+      if (enabled) {
+        document.body.classList.add('dark-mode');
+        darkToggle.textContent = 'Light Mode';
+        darkToggle.setAttribute('aria-pressed', 'true');
+      } else {
+        document.body.classList.remove('dark-mode');
+        darkToggle.textContent = 'Dark Mode';
+        darkToggle.setAttribute('aria-pressed', 'false');
+      }
+      localStorage.setItem('darkMode', enabled ? 'true' : 'false');
     }
 
-    darkModeToggle.addEventListener('click', () => {
-      const isDark = body.classList.toggle('dark-mode');
-      darkModeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-      darkModeToggle.setAttribute('aria-pressed', isDark);
-      // Save preference
-      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-    });
+    // Load saved dark mode preference
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'true') {
+      setDarkMode(true);
+    } else {
+      setDarkMode(false);
+    }
 
-    // Close nav menu when a link is clicked (on mobile)
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (nav.classList.contains('open')) {
-          nav.classList.remove('open');
-          menuToggle.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', false);
-        }
-      });
+    // Toggle dark mode button
+    darkToggle.addEventListener('click', () => {
+      const isDark = document.body.classList.contains('dark-mode');
+      setDarkMode(!isDark);
     });
   </script>
 </body>
