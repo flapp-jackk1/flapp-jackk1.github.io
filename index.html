@@ -4,20 +4,42 @@
   <link rel="icon" href="favicon.png" type="image/png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
+
   <!-- SEO Meta Tags -->
   <meta name="description" content="Nova-Labs • Space - Independent astronomy research project." />
   <meta name="keywords" content="Nova, Labs, Nova Labs, nova labs space, NovaLabs dot Space, astronomy, research, exoplanet, student space initiative, space, nova-labs • space, novalabs, Nova-Labs • Space" />
   <meta name="author" content="NovaLabs Space" />
   <meta name="robots" content="index, follow" />
-  
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Nova-Labs • Space | Astronomy and Space Research" />
+  <meta property="og:description" content="Student-led astronomy research project exploring exoplanets." />
+  <meta property="og:image" content="https://novalabs.space/images/og-image.jpg" />
+  <meta property="og:url" content="https://novalabs.space" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nova-Labs • Space | Astronomy and Space Research" />
+  <meta name="twitter:description" content="Student-led independent astronomy research exploring exoplanets and space innovation." />
+  <meta name="twitter:image" content="https://novalabs.space/images/twitter-image.jpg" />
+
   <!-- Title -->
   <title>Nova-Labs • Space | Astronomy and Space Research</title>
+
+  <!-- Preconnect for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 
   <style>
+    /* Smooth scroll for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
@@ -25,7 +47,7 @@
       background-size: cover;
       color: #fff;
     }
-    header {
+    header[role="banner"] {
       position: relative;
       width: 100%;
       background: rgba(0, 0, 0, 0.65);
@@ -39,7 +61,7 @@
       font-size: 2.5rem;
       color: #00ccff;
     }
-    nav {
+    nav[role="navigation"] {
       margin-top: 0.5em;
     }
     nav a {
@@ -48,18 +70,25 @@
       margin: 0 1em;
       font-weight: bold;
       transition: color 0.3s ease;
+      outline-offset: 3px;
     }
-    nav a:hover {
+    nav a:hover,
+    nav a:focus-visible {
       color: #00ccff;
       text-decoration: underline;
+      outline: 2px solid #00ccff;
+      outline-offset: 2px;
+    }
+    main {
+      max-width: 800px;
+      margin: 4em auto 0 auto;
+      padding: 0 1em;
     }
     section {
       padding: 2em;
-      max-width: 800px;
-      margin: auto;
       background: rgba(0, 0, 0, 0.65);
       border-radius: 10px;
-      margin-top: 4em;
+      margin-bottom: 3em;
     }
     h2 {
       border-bottom: 2px solid #333;
@@ -78,20 +107,25 @@
       transition: background-color 0.3s ease;
       cursor: pointer;
     }
-    a.button:hover {
+    a.button:hover,
+    a.button:focus-visible {
       background: #0099cc;
+      outline: none;
+      box-shadow: 0 0 5px #0099cc;
     }
     section ul li a {
       color: #00ccff;
       text-decoration: none;
       font-weight: bold;
     }
-    section ul li a:hover {
+    section ul li a:hover,
+    section ul li a:focus-visible {
       text-decoration: underline;
+      outline: none;
     }
-    footer {
+    footer[role="contentinfo"] {
       text-align: center;
-      padding: 2em;
+      padding: 2em 1em;
       font-size: 0.8em;
       background: rgba(0, 0, 0, 0.65);
       border-top: 1px solid #005f99;
@@ -171,9 +205,9 @@
   </style>
 </head>
 <body>
-  <header>
+  <header role="banner">
     <h1>NovaLabs • Space</h1>
-    <nav>
+    <nav role="navigation" aria-label="Primary navigation">
       <a href="#home">Home</a>
       <a href="#research">Research</a>
       <a href="#projects">Projects</a>
@@ -182,104 +216,91 @@
     </nav>
   </header>
 
-  <section id="home">
-    <h2>Welcome to Nova-Labs • Space</h2>
-    <p>We invite you to a better future, filled with peace, sustainability, and innovation. - NovaLabs. Tomorrow is a new day.</p>
-  </section>
+  <main>
+    <section id="home">
+      <h2>Welcome to Nova-Labs • Space</h2>
+      <p>We invite you to a better future, filled with peace, sustainability, and innovation. - NovaLabs. Tomorrow is a new day.</p>
+    </section>
 
-  <section id="research">
-    <h2>Featured Research</h2>
-    <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
-    <a href="paper.pdf" target="_blank" class="button" id="read-paper-btn">Read the Full Paper</a>
-  </section>
+    <section id="research">
+      <h2>Featured Research</h2>
+      <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
+      <a href="paper.pdf" target="_blank" class="button" id="read-paper-btn">Read the Full Paper</a>
+    </section>
 
-  <section id="projects">
-    <h2>Current Projects</h2>
-    <ul>
-      <li>Socials: Follow our TikTok, stay tuned on progress of paper, sneak peaks, and more content. <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank">@novalabs.tiktok</a></li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h2>Current Projects</h2>
+      <ul>
+        <li>Socials: Follow our TikTok, stay tuned on progress of paper, sneak peaks, and more content. <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener noreferrer">@novalabs.tiktok</a></li>
+      </ul>
+    </section>
 
-  <section id="about">
-    <h2>About Nova-Labs • Space</h2>
-    <p>NovaLabs • Space is a student led initiative, created to spread the word about how exciting the field of astronomy and space can truly be. This project started off as nothing, just a small idea on the backburner. Until it wasn't. NovaLabs has evolved into something great, and we can only keep evolving with the help of you.</p>
-  </section>
+    <section id="about">
+      <h2>About Nova-Labs • Space</h2>
+      <p>NovaLabs • Space is a student led initiative, created to spread the word about how exciting the field of astronomy and space can truly be. This project started off as nothing, just a small idea on the backburner. Until it wasn't. NovaLabs has evolved into something great and unique, with aims to explore space and astronomy using the latest scientific techniques and tools.</p>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #00ccff;">socials.novalabs@gmail.com</a></p>
-  </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Have questions or want to learn more? <a href="mailto:contact@novalabs.space">Email us</a></p>
+    </section>
+  </main>
 
-  <footer>
-    <p>© 2025 Nova-Labs • Space. All rights reserved.</p>
-    <p style="font-size: 0.7em; color: #ccc; margin-top: 0.5em;">
-      Image Credit: “Islands in the Sky” — NASA astronaut Jeff Williams, Expedition 47, International Space Station, March 3, 2016.
-    </p>
+  <footer role="contentinfo">
+    &copy; 2025 NovaLabs • Space. All rights reserved.
+    <!-- You could add social icons or links here -->
   </footer>
 
   <!-- Popup container -->
-  <div id="popup-container"></div>
+  <div id="popup-container" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const readButton = document.getElementById('read-paper-btn');
     const popupContainer = document.getElementById('popup-container');
-    const MAX_POPUPS = 3;
+    let popupTimeouts = [];
 
-    readButton.addEventListener('click', (event) => {
-      event.preventDefault();
-
+    function showPopup(message) {
+      // Create popup message element
       const popup = document.createElement('div');
       popup.className = 'popup-message';
-      popup.textContent = "This isn’t available yet, check in later.";
+      popup.textContent = message;
 
-      // Append new popup at end (bottom visually)
       popupContainer.appendChild(popup);
 
-      const gap = 8; // gap in px between popups
-      const popupHeight = popup.offsetHeight || 48; // fallback height
-      const moveUpDistance = popupHeight + gap;
-
-      // Move existing popups (except the new one) UP by (popup height + gap)
-      const childrenToMove = Array.from(popupContainer.children).slice(0, -1);
-
-      // Apply transform up with transition
-      childrenToMove.forEach(child => {
-        child.style.transition = 'transform 0.3s ease';
-        child.style.transform = `translateY(-${moveUpDistance}px)`;
-      });
-
-      // After move up animation, reset transform to zero so they can be animated next time
-      setTimeout(() => {
-        childrenToMove.forEach(child => {
-          child.style.transition = 'transform 0.3s ease';
-          child.style.transform = 'translateY(0)';
-        });
-      }, 300);
-
-      // If exceeding max popups, remove the oldest with fade + move up animation
-      if (popupContainer.children.length > MAX_POPUPS) {
-        const oldest = popupContainer.children[0];
-        if (oldest) {
-          // Add fadeUpOut animation to fade and move up the oldest popup before removal
-          oldest.style.animation = 'fadeUpOut 0.5s forwards';
-          oldest.addEventListener('animationend', () => {
-            if (oldest.parentElement === popupContainer) {
-              popupContainer.removeChild(oldest);
-            }
-          });
-        }
+      // Remove oldest popup if more than 3 visible
+      if (popupContainer.childElementCount > 3) {
+        const oldest = popupContainer.firstElementChild;
+        // Animate fadeUpOut
+        oldest.style.animation = 'fadeUpOut 0.5s forwards';
+        setTimeout(() => {
+          if (oldest.parentNode) {
+            oldest.parentNode.removeChild(oldest);
+          }
+        }, 500);
       }
 
-      // Auto fadeout the current popup after 3 seconds
-      setTimeout(() => {
+      // Remove popup after 4 seconds
+      const timeout = setTimeout(() => {
         popup.style.animation = 'fadeOut 0.5s forwards';
-        popup.addEventListener('animationend', () => {
-          if (popup.parentElement === popupContainer) {
-            popupContainer.removeChild(popup);
+        setTimeout(() => {
+          if (popup.parentNode) {
+            popup.parentNode.removeChild(popup);
           }
-        });
-      }, 3000);
+        }, 500);
+      }, 4000);
+
+      popupTimeouts.push(timeout);
+    }
+
+    // Example: add popup on button click
+    const readPaperBtn = document.getElementById('read-paper-btn');
+    readPaperBtn.addEventListener('click', () => {
+      showPopup('Enjoy the paper! Feel free to share your feedback.');
     });
+
+    // TODO: Add analytics scripts here, e.g., Google Analytics or Plausible
+
+    // TODO: Add back-to-top button for longer pages
+
   </script>
 </body>
 </html>
