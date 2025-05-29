@@ -15,12 +15,13 @@
       color: #fff;
     }
     header {
-      /* Removed sticky */
-      background: rgba(0, 0, 0, 0.65); /* 65% opacity black */
+      position: sticky;
+      top: 0;
+      background: #000000; /* fully black */
       padding: 1em;
       text-align: center;
       border-bottom: 2px solid #005f99; /* nova blue border */
-      /* Removed z-index as no sticky */
+      z-index: 1000;
     }
     header h1 {
       margin: 0;
@@ -129,6 +130,9 @@
 
   <footer>
     <p>© 2025 NovaLabs. All rights reserved.</p>
+    <p style="font-size: 0.7em; color: #ccc; margin-top: 0.5em;">
+      Image Credit: “Islands in the Sky” — NASA astronaut Jeff Williams, Expedition 47, International Space Station, March 3, 2016.
+    </p>
   </footer>
 </body>
 </html>
