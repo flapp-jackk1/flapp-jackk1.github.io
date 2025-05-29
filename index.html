@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="favicon.png" type="image/png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Nova-Labs • Space - Independent astronomy research project." />
-  <meta name="keywords" content="Nova, Labs, Nova Labs, nova labs space, NovaLabs dot Space, astronomy, research, exoplanet, student space initiative, space, nova-labs • space, novalabs, Nova-Labs • Space" />
-  <meta name="author" content="NovaLabs Space" />
-  <meta name="robots" content="index, follow" />
-  
-  <!-- Title -->
-  <title>Nova-Labs • Space | Astronomy and Space Research</title>
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-
+  <title>NovaLabs • Space</title>
   <style>
-    /* Reset & Base */
+    /* Reset and base */
     * {
       box-sizing: border-box;
     }
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
       color: #000;
       display: flex;
       flex-direction: column;
-      align-items: center;
       min-height: 100vh;
-      text-align: center;
+      align-items: center;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #005f99;
+      text-decoration: underline;
+      outline: none;
     }
 
     /* Header */
@@ -40,224 +37,100 @@
       position: relative;
       width: 100%;
       max-width: 960px;
-      background: rgba(255, 255, 255, 0.65); /* white, 65% transparent */
+      background: rgba(255, 255, 255, 0.65); /* 65% transparent white */
       padding: 1em 2em;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 2px solid #005f99;
-      margin: 0 auto;
-      color: #000;
       user-select: none;
+      flex-wrap: nowrap; /* desktop no wrap */
+      margin-top: 0.5em;
+      margin-bottom: 1em;
     }
     header img {
       height: 48px;
       flex-shrink: 0;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #000;
-      flex-grow: 1;
-      text-align: center;
-    }
     nav {
       display: flex;
-      gap: 1em;
-      flex-wrap: wrap;
+      gap: 1.5em;
+      flex-wrap: nowrap;
       justify-content: flex-end;
-      min-width: 180px;
+      min-width: 220px;
     }
     nav a {
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
       white-space: nowrap;
     }
-    nav a:hover,
-    nav a:focus {
-      color: #005f99;
-      text-decoration: underline;
-      outline: none;
-    }
 
-    /* Section styling */
-    section {
-      padding: 2em;
-      max-width: 960px;
-      margin: 2em auto;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-sizing: border-box;
-      color: #000;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-    }
-    h2 {
-      border-bottom: 2px solid #005f99;
-      padding-bottom: 0.5em;
-      color: #005f99;
-      margin-bottom: 1em;
-    }
-
-    a.button {
-      display: inline-block;
-      margin-top: 1em;
-      padding: 0.5em 1.2em;
-      background: #005f99;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-    }
-    a.button:hover,
-    a.button:focus {
-      background: #003f66;
-      outline: none;
-    }
-    a.button[aria-disabled="true"] {
-      opacity: 0.6;
-      cursor: default;
-      pointer-events: none;
-    }
-
-    section ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0 auto;
-      max-width: 600px;
-    }
-    section ul li {
-      margin-bottom: 0.7em;
-      font-weight: 600;
-      color: #333;
-    }
-    section ul li a {
-      color: #005f99;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section ul li a:hover,
-    section ul li a:focus {
-      text-decoration: underline;
-      outline: none;
-    }
-
-    footer {
-      max-width: 960px;
-      margin: 3em auto 1em;
-      text-align: center;
-      padding: 2em;
-      font-size: 0.8em;
-      background: rgba(255, 255, 255, 0.65);
-      border-top: 1px solid #005f99;
-      color: #000;
-      box-sizing: border-box;
-      user-select: none;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    footer p {
-      margin: 0.2em 0;
-    }
-
-    /* Popup Container and messages */
-    #popup-container {
-      position: fixed;
-      bottom: 1em;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-      z-index: 2000;
-      max-width: 90vw;
-      pointer-events: none;
-      align-items: center;
-    }
-
-    .popup-message {
-      background-color: rgba(0, 0, 0, 0.85);
-      color: #00ccff;
-      padding: 1em 2em;
-      border: 1px solid #00ccff;
-      border-radius: 10px;
-      font-weight: bold;
-      box-shadow: 0 0 8px #00ccffaa;
-      opacity: 0;
-      transform: translateY(100%);
-      pointer-events: auto;
-      white-space: nowrap;
-      user-select: none;
-      font-size: 1rem;
-      min-width: 280px;
-      max-width: 400px;
-      text-align: center;
-      animation: slideUpIn 0.5s forwards;
-      transition: transform 0.3s ease;
-    }
-
-    @keyframes slideUpIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
+    /* Mobile styles */
     @media (max-width: 768px) {
       header {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* allow wrap */
         padding: 1em;
         justify-content: center;
-      }
-      header h1 {
-        order: 3;
-        flex-basis: 100%;
-        margin: 0.5em 0 0 0;
-        font-size: 2rem;
-      }
-      nav {
-        order: 2;
-        justify-content: center;
-        width: 100%;
-        margin-top: 0.5em;
-        gap: 0.75em;
+        max-width: 100%;
+        margin: 0.5em 0 1em 0;
       }
       header img {
         order: 1;
         margin-bottom: 0.5em;
       }
-      section {
-        margin: 1em;
-        padding: 1.5em;
-      }
-      section ul {
-        max-width: 100%;
-      }
-      a.button {
-        font-size: 1rem;
+      nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 0.5em;
+        flex-wrap: wrap;
+        min-width: 0;
       }
     }
 
-    @media (max-width: 400px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      a.button {
-        padding: 0.5em 1em;
-        font-size: 0.9rem;
-      }
+    /* Main content */
+    main {
+      width: 100%;
+      max-width: 960px;
+      padding: 0 1em 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      margin-bottom: 2em;
+    }
+    section {
+      width: 100%;
+      background: white;
+      padding: 1.5em;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+    }
+    section h2 {
+      margin-top: 0;
+      color: #005f99;
+      text-align: center;
+    }
+    p {
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      max-width: 960px;
+      padding: 1em 2em;
+      border-top: 1px solid #ccc;
+      font-size: 0.9em;
+      color: #555;
+      text-align: center;
+      margin-bottom: 1em;
     }
   </style>
 </head>
 <body>
   <header>
     <img src="logo.png" alt="NovaLabs Logo" />
-    <h1>NovaLabs • Space</h1>
     <nav>
       <a href="#home">Home</a>
       <a href="#research">Research</a>
@@ -267,50 +140,36 @@
     </nav>
   </header>
 
-  <section id="home">
-    <h2>Welcome to Nova-Labs • Space</h2>
-    <p>We invite you to a better future, filled with peace, sustainability, and innovation. - NovaLabs. Tomorrow is a new day.</p>
-  </section>
+  <main>
+    <section id="home">
+      <h2>Welcome to NovaLabs Space</h2>
+      <p>Building cool stuff for the fun of it, exploring the final frontier with cutting-edge tech and ideas.</p>
+    </section>
 
-  <section id="research">
-    <h2>Featured Research</h2>
-    <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
-    <a href="#" class="button" id="read-paper-btn" aria-disabled="true" tabindex="-1">Read the Full Paper (Coming Soon)</a>
-  </section>
+    <section id="research">
+      <h2>Research</h2>
+      <p>Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method.</p>
+      <!-- Paper link temporarily removed until finished -->
+    </section>
 
-  <section id="projects">
-    <h2>Current Projects</h2>
-    <ul>
-      <li>Socials: Follow our TikTok, stay tuned on progress of paper, sneak peaks, and more content. <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener noreferrer">@novalabs.tiktok</a></li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>Designing advanced rovers, AI systems for space exploration, and innovative propulsion concepts.</p>
+    </section>
 
-  <section id="about">
-    <h2>About Nova-Labs • Space</h2>
-    <p>NovaLabs • Space is a student led initiative, created to spread the word about how exciting the field of astronomy and space can truly be. This project started off as nothing, just a small idea on the backburner. Until it wasn't. NovaLabs has evolved into something great, and we can only keep evolving with the help of you.</p>
-  </section>
+    <section id="about">
+      <h2>About NovaLabs</h2>
+      <p>NovaLabs is an anonymous multidisciplinary company dedicated to pushing humanity’s reach into space.</p>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #005f99;">socials.novalabs@gmail.com</a></p>
-  </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>You can reach out via email at info@novalabs.space or follow us on social media.</p>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Nova-Labs • Space. All rights reserved.</p>
-    <p style="font-size: 0.7em; color: #444; margin-top: 0.5em;">
-      Image Credit: “Islands in the Sky” — NASA astronaut Jeff Williams, Expedition 47, International Space Station, March 3, 2016.
-    </p>
+    &copy; 2025 NovaLabs. All rights reserved.
   </footer>
-
-  <!-- Popup container -->
-  <div id="popup-container"></div>
-
-  <script>
-    // Disabled paper link, no popup needed
-    const readButton = document.getElementById('read-paper-btn');
-    readButton.addEventListener('click', (event) => {
-      event.preventDefault();
-    });
-  </script>
 </body>
 </html>
