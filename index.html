@@ -1,403 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NovaLabs • Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOVA Labs</title>
   <style>
-    /* Reset and base */
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #121212;
+      --text-light: #000000;
+      --text-dark: #ffffff;
+      --box-outline: #444;
     }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #000;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      align-items: center;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    a:hover,
-    a:focus {
-      color: #005f99;
-      text-decoration: underline;
-      outline: none;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Header */
+    [data-theme="dark"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
     header {
-      position: relative;
-      width: 100%;
-      max-width: 960px;
-      background: rgba(255, 255, 255, 0.65); /* 65% transparent white */
-      padding: 1em 2em;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid #005f99;
-      user-select: none;
-      flex-wrap: nowrap;
-      margin-top: 0.5em;
-      margin-bottom: 1em;
-    }
-    header img {
-      height: 48px;
-      flex-shrink: 0;
-    }
-    nav {
-      display: flex;
-      gap: 1.5em;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      min-width: 220px;
-    }
-    nav a,
-    nav button.dark-mode-toggle {
-      white-space: nowrap;
-      cursor: pointer;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #1e1e1e;
+      color: white;
     }
 
-    /* Hamburger Menu Button */
-    .menu-toggle {
+    .hamburger {
       display: none;
       flex-direction: column;
-      justify-content: space-around;
-      width: 28px;
-      height: 28px;
-      background: transparent;
-      border: none;
+      gap: 5px;
       cursor: pointer;
-      padding: 0;
-      margin-left: 1em;
-      z-index: 10;
     }
-    .menu-toggle span {
-      width: 100%;
+
+    .hamburger div {
+      width: 25px;
       height: 3px;
-      background: #005f99;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-      display: block;
-      transform-origin: center;
-    }
-    /* Animate hamburger to X when active */
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
+      background-color: white;
     }
 
-    /* Dark mode styles */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-    body.dark-mode header {
-      background: rgba(18, 18, 18, 0.85);
-      border-bottom-color: #3399ff;
-    }
-    body.dark-mode nav a:hover,
-    body.dark-mode nav a:focus {
-      color: #3399ff;
-      text-decoration: underline;
-    }
-    body.dark-mode footer {
-      border-top-color: #444;
-      color: #aaa;
-    }
-    body.dark-mode .social-icons a {
-      background: #222;
-      border-color: #3399ff;
-    }
-    body.dark-mode .social-icons a:hover,
-    body.dark-mode .social-icons a:focus {
-      background-color: #3399ff;
-      border-color: #005f99;
-    }
-    body.dark-mode .btn-soon {
-      background-color: #444;
-      border-color: #666;
-      color: #bbb;
-      box-shadow: inset 0 0 5px #666;
-    }
-    body.dark-mode section {
-      background: #1e1e1e;
-      box-shadow: 0 0 8px rgba(255,255,255,0.1);
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
     }
 
-    /* Mobile styles */
+    nav li {
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .box {
+      border: 2px solid var(--box-outline);
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 600px;
+      background-color: #f0f0f0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 0.5rem;
+      transition: box-shadow 0.3s, background-color 0.3s;
+    }
+
+    [data-theme="dark"] .box {
+      background-color: #1f1f1f;
+      box-shadow: none; /* remove shadow in dark mode */
+      border: 2px solid var(--box-outline);
+    }
+
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .icons img {
+      width: 40px;
+      height: 40px;
+    }
+
     @media (max-width: 768px) {
-      header {
-        flex-wrap: nowrap;
-        padding: 1em;
-        max-width: 100%;
-        margin: 0.5em 0 1em 0;
+      .hamburger {
+        display: flex;
       }
-      nav {
-        position: fixed;
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #1e1e1e;
+        position: absolute;
         top: 60px;
         right: 0;
-        background: rgba(255,255,255,0.95);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        flex-direction: column;
-        gap: 1em;
-        padding: 1em 2em;
-        min-width: 160px;
-        height: calc(100vh - 60px);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        z-index: 9;
-        border-left: 2px solid #005f99;
-        /* Hide nav by default on mobile */
+        width: 200px;
+        padding: 1rem;
+      }
+
+      nav ul.show {
         display: flex;
       }
-      nav.open {
-        transform: translateX(0);
-      }
-      nav a,
-      nav button.dark-mode-toggle {
-        white-space: normal;
-        font-size: 1.2em;
-      }
-      /* Show hamburger */
-      .menu-toggle {
-        display: flex;
-      }
-
-      /* Dark mode nav background */
-      body.dark-mode nav {
-        background: rgba(18, 18, 18, 0.95);
-        border-left-color: #3399ff;
-      }
-    }
-
-    /* Main content */
-    main {
-      width: 100%;
-      max-width: 960px;
-      padding: 0 1em 2em 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2em;
-      margin-bottom: 2em;
-    }
-    section {
-      width: 100%;
-      background: white;
-      padding: 1.5em;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      border-radius: 6px;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    section h2 {
-      margin-top: 0;
-      color: #005f99;
-      text-align: center;
-    }
-    p {
-      line-height: 1.5;
-      text-align: center;
-      margin-bottom: 1em;
-    }
-
-    /* Button style for Coming Soon */
-    .btn-soon {
-      display: block;
-      max-width: 200px;
-      margin: 0 auto;
-      padding: 0.6em 1.2em;
-      font-weight: 700;
-      font-size: 1em;
-      color: #888;
-      background-color: #ddd;
-      border: 2px solid #bbb;
-      border-radius: 6px;
-      cursor: not-allowed;
-      text-align: center;
-      user-select: none;
-      pointer-events: none;
-      box-shadow: inset 0 0 5px #ccc;
-      transition: background-color 0.3s ease;
-    }
-
-    /* Footer */
-    footer {
-      width: 100%;
-      max-width: 960px;
-      padding: 1em 2em;
-      border-top: 1px solid #ccc;
-      font-size: 0.9em;
-      color: #555;
-      text-align: center;
-      margin-bottom: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8em;
-      transition: color 0.3s ease, border-color 0.3s ease;
-    }
-
-    /* Social icons container */
-    .social-icons {
-      display: flex;
-      gap: 1.2em;
-      justify-content: center;
-      align-items: center;
-    }
-    .social-icons a {
-      display: inline-block;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #005f99;
-      background: white;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-    .social-icons a:hover,
-    .social-icons a:focus {
-      background-color: #005f99;
-      border-color: #003f66;
-      outline: none;
-    }
-    .social-icons a img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: invert(0%); /* normal colors */
-      transition: filter 0.3s ease;
-    }
-    .social-icons a:hover img,
-    .social-icons a:focus img {
-      filter: invert(100%) brightness(120%);
-    }
-
-    /* Dark mode toggle button */
-    .dark-mode-toggle {
-      background: none;
-      border: 2px solid #005f99;
-      border-radius: 6px;
-      padding: 0.4em 0.8em;
-      font-weight: 600;
-      font-size: 0.9em;
-      color: #005f99;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-      user-select: none;
-      align-self: center;
-      margin-top: 1em;
-      width: 100%;
-      max-width: 150px;
-    }
-    .dark-mode-toggle:hover,
-    .dark-mode-toggle:focus {
-      background-color: #005f99;
-      color: white;
-      outline: none;
-    }
-    body.dark-mode .dark-mode-toggle {
-      color: #3399ff;
-      border-color: #3399ff;
-    }
-    body.dark-mode .dark-mode-toggle:hover,
-    body.dark-mode .dark-mode-toggle:focus {
-      background-color: #3399ff;
-      color: #121212;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="NovaLabs Logo" />
-    <nav id="nav-menu" aria-label="Primary navigation">
-      <a href="#section1">Section 1</a>
-      <a href="#section2">Section 2</a>
-      <a href="#section3">Section 3</a>
-      <button class="dark-mode-toggle" aria-pressed="false" id="dark-mode-toggle">Toggle Dark Mode</button>
+    <div><strong>NOVA Labs</strong></div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav>
+      <ul id="nav-links">
+        <li>Home</li>
+        <li>About</li>
+        <li>Projects</li>
+        <li>Contact</li>
+      </ul>
     </nav>
-    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </header>
 
-  <main>
-    <section id="section1">
-      <h2>Section 1</h2>
-      <p>Content for section 1 goes here.</p>
+  <main class="container">
+    <section class="box">
+      <h2>Mission</h2>
+      <p>We design cool stuff for the fun of it. Focused on astronomy, space, and the future of humanity beyond Earth.</p>
     </section>
-    <section id="section2">
-      <h2>Section 2</h2>
-      <p>Content for section 2 goes here.</p>
+
+    <section class="box">
+      <h2>Latest Project</h2>
+      <p>We’re exploring advanced exoplanet detection through transit method data modeling. A future built on better detection and deeper understanding.</p>
     </section>
-    <section id="section3">
-      <h2>Section 3</h2>
-      <p>Content for section 3 goes here.</p>
-    </section>
+
+    <div class="icons">
+      <a href="mailto:example@gmail.com"><img src="gmail.png" alt="Gmail Icon"></a>
+      <a href="https://www.tiktok.com/@yourprofile" target="_blank"><img src="tiktok.png" alt="TikTok Icon"></a>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 NovaLabs. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="#" aria-label="Twitter"><img src="twitter.svg" alt="Twitter icon" /></a>
-      <a href="#" aria-label="Facebook"><img src="facebook.svg" alt="Facebook icon" /></a>
-      <a href="#" aria-label="LinkedIn"><img src="linkedin.svg" alt="LinkedIn icon" /></a>
-    </div>
-  </footer>
-
   <script>
-    // Hamburger menu toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-
-    // Dark mode toggle
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    // Load saved preference
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-      body.classList.add('dark-mode');
-      darkModeToggle.setAttribute('aria-pressed', 'true');
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('show');
     }
 
-    darkModeToggle.addEventListener('click', () => {
-      const isDark = body.classList.toggle('dark-mode');
-      darkModeToggle.setAttribute('aria-pressed', isDark);
-      localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
-    });
-
-    // Close menu on link click (mobile)
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navMenu.classList.contains('open')) {
-          menuToggle.classList.remove('active');
-          navMenu.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
+    // Theme toggle logic if needed
+    // Example: document.documentElement.setAttribute('data-theme', 'dark');
   </script>
 </body>
 </html>
