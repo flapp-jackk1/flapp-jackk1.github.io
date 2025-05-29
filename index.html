@@ -44,7 +44,7 @@
       justify-content: space-between;
       border-bottom: 2px solid #005f99;
       user-select: none;
-      flex-wrap: nowrap; /* desktop no wrap */
+      flex-wrap: nowrap;
       margin-top: 0.5em;
       margin-bottom: 1em;
     }
@@ -66,7 +66,7 @@
     /* Mobile styles */
     @media (max-width: 768px) {
       header {
-        flex-wrap: wrap; /* allow wrap */
+        flex-wrap: wrap;
         padding: 1em;
         justify-content: center;
         max-width: 100%;
@@ -81,7 +81,6 @@
         width: 100%;
         justify-content: center;
         gap: 1em;
-        margin-top: 0.5em;
         flex-wrap: wrap;
         min-width: 0;
       }
@@ -146,6 +145,45 @@
       color: #555;
       text-align: center;
       margin-bottom: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8em;
+    }
+
+    /* Social icons container */
+    .social-icons {
+      display: flex;
+      gap: 1.2em;
+      justify-content: center;
+      align-items: center;
+    }
+    .social-icons a {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #005f99;
+      background: white;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .social-icons a:hover,
+    .social-icons a:focus {
+      background-color: #005f99;
+      border-color: #003f66;
+      outline: none;
+    }
+    .social-icons a img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: invert(0%); /* normal colors */
+      transition: filter 0.3s ease;
+    }
+    .social-icons a:hover img,
+    .social-icons a:focus img {
+      filter: invert(100%) brightness(120%);
     }
   </style>
 </head>
@@ -191,7 +229,17 @@
   </main>
 
   <footer>
-    &copy; 2025 NovaLabs. All rights reserved.
+    <div class="social-icons" aria-label="Social Media Links">
+      <a href="mailto:socials.novalabs@gmail.com" aria-label="Email NovaLabs">
+        <img src="gmail.png" alt="Gmail Icon" />
+      </a>
+      <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener" aria-label="NovaLabs TikTok">
+        <img src="tiktok.png" alt="TikTok Icon" />
+      </a>
+    </div>
+    <div>
+      &copy; 2025 NovaLabs. All rights reserved.
+    </div>
   </footer>
 </body>
 </html>
