@@ -1,165 +1,245 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOVA Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaLabs • Space</title>
   <style>
-    :root {
-      --bg-light: #ffffff;
-      --bg-dark: #121212;
-      --text-light: #000000;
-      --text-dark: #ffffff;
-      --box-outline: #444;
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
     }
-
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-light);
-      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #005f99;
+      text-decoration: underline;
+      outline: none;
     }
 
-    [data-theme="dark"] body {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
+    /* Header */
     header {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      background: rgba(255, 255, 255, 0.65); /* 65% transparent white */
+      padding: 1em 2em;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: #1e1e1e;
-      color: white;
+      border-bottom: 2px solid #005f99;
+      user-select: none;
+      flex-wrap: nowrap;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
     }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
+    header img {
+      height: 48px;
+      flex-shrink: 0;
     }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-    }
-
-    nav ul {
-      list-style: none;
+    nav {
       display: flex;
-      gap: 1rem;
+      gap: 1.5em;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      min-width: 220px;
+    }
+    nav a {
+      white-space: nowrap;
     }
 
-    nav li {
-      cursor: pointer;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-
-    .box {
-      border: 2px solid var(--box-outline);
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 600px;
-      background-color: #f0f0f0;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 0.5rem;
-      transition: box-shadow 0.3s, background-color 0.3s;
-    }
-
-    [data-theme="dark"] .box {
-      background-color: #1f1f1f;
-      box-shadow: none; /* remove shadow in dark mode */
-      border: 2px solid var(--box-outline);
-    }
-
-    .icons {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .icons img {
-      width: 40px;
-      height: 40px;
-    }
-
+    /* Mobile styles */
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
+      header {
+        flex-wrap: wrap;
+        padding: 1em;
+        justify-content: center;
+        max-width: 100%;
+        margin: 0.5em 0 1em 0;
       }
+      header img {
+        order: 1;
+        margin-bottom: 0.5em;
+      }
+      nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        gap: 1em;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+    }
 
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: #1e1e1e;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 1rem;
-      }
+    /* Main content */
+    main {
+      width: 100%;
+      max-width: 960px;
+      padding: 0 1em 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      margin-bottom: 2em;
+    }
+    section {
+      width: 100%;
+      background: white;
+      padding: 1.5em;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+    }
+    section h2 {
+      margin-top: 0;
+      color: #005f99;
+      text-align: center;
+    }
+    p {
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 1em;
+    }
 
-      nav ul.show {
-        display: flex;
-      }
+    /* Button style for Coming Soon */
+    .btn-soon {
+      display: block;
+      max-width: 200px;
+      margin: 0 auto;
+      padding: 0.6em 1.2em;
+      font-weight: 700;
+      font-size: 1em;
+      color: #888;
+      background-color: #ddd;
+      border: 2px solid #bbb;
+      border-radius: 6px;
+      cursor: not-allowed;
+      text-align: center;
+      user-select: none;
+      pointer-events: none;
+      box-shadow: inset 0 0 5px #ccc;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      max-width: 960px;
+      padding: 1em 2em;
+      border-top: 1px solid #ccc;
+      font-size: 0.9em;
+      color: #555;
+      text-align: center;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8em;
+    }
+
+    /* Social icons container */
+    .social-icons {
+      display: flex;
+      gap: 1.2em;
+      justify-content: center;
+      align-items: center;
+    }
+    .social-icons a {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #005f99;
+      background: white;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .social-icons a:hover,
+    .social-icons a:focus {
+      background-color: #005f99;
+      border-color: #003f66;
+      outline: none;
+    }
+    .social-icons a img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: invert(0%); /* normal colors */
+      transition: filter 0.3s ease;
+    }
+    .social-icons a:hover img,
+    .social-icons a:focus img {
+      filter: invert(100%) brightness(120%);
     }
   </style>
 </head>
 <body>
   <header>
-    <div><strong>NOVA Labs</strong></div>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <img src="logo.png" alt="NovaLabs Logo" />
     <nav>
-      <ul id="nav-links">
-        <li>Home</li>
-        <li>About</li>
-        <li>Projects</li>
-        <li>Contact</li>
-      </ul>
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main class="container">
-    <section class="box">
-      <h2>Mission</h2>
-      <p>We design cool stuff for the fun of it. Focused on astronomy, space, and the future of humanity beyond Earth.</p>
+  <main>
+    <section id="home">
+      <h2>Welcome to NovaLabs Space</h2>
+      <p>Building cool stuff for the fun of it, exploring the final frontier with cutting-edge tech and ideas.</p>
     </section>
 
-    <section class="box">
-      <h2>Latest Project</h2>
-      <p>We’re exploring advanced exoplanet detection through transit method data modeling. A future built on better detection and deeper understanding.</p>
+    <section id="research">
+      <h2>Research</h2>
+      <p>Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method.</p>
+      <button class="btn-soon" aria-disabled="true" title="Coming soon">Paper Coming Soon</button>
     </section>
 
-    <div class="icons">
-      <a href="mailto:example@gmail.com"><img src="gmail.png" alt="Gmail Icon"></a>
-      <a href="https://www.tiktok.com/@yourprofile" target="_blank"><img src="tiktok.png" alt="TikTok Icon"></a>
-    </div>
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>Designing advanced rovers, AI systems for space exploration, and innovative propulsion concepts.</p>
+    </section>
+
+    <section id="about">
+      <h2>About NovaLabs</h2>
+      <p>NovaLabs is an anonymous multidisciplinary company dedicated to pushing humanity’s reach into space.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: info@novalabs.space</p>
+      <p>Follow us on social media: Twitter, LinkedIn, Instagram</p>
+    </section>
   </main>
 
-  <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById('nav-links');
-      navLinks.classList.toggle('show');
-    }
-
-    // Theme toggle logic if needed
-    // Example: document.documentElement.setAttribute('data-theme', 'dark');
-  </script>
+  <footer>
+    <div class="social-icons" aria-label="Social Media Links">
+      <a href="mailto:socials.novalabs@gmail.com" aria-label="Email NovaLabs">
+        <img src="gmail.png" alt="Gmail Icon" />
+      </a>
+      <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener" aria-label="NovaLabs TikTok">
+        <img src="tiktok.png" alt="TikTok Icon" />
+      </a>
+    </div>
+    <div>
+      &copy; 2025 NovaLabs. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
