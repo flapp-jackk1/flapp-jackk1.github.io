@@ -37,20 +37,19 @@
     }
 
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       width: 100%;
-      max-width: 960px;
-      background: rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 1);
       padding: 1em 2em;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 2px solid #002d62;
       user-select: none;
-      margin-top: 0.5em;
-      margin-bottom: 1em;
-      z-index: 1000;
     }
     header img {
       height: 72px;
@@ -135,7 +134,7 @@
     main {
       width: 100%;
       max-width: 960px;
-      padding: 0 1em 2em 1em;
+      padding: 8em 1em 2em 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -190,24 +189,26 @@
     }
 
     footer {
-      position: sticky;
+      position: fixed;
       bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       width: 100%;
-      max-width: 960px;
+      background: white;
       padding: 1em 2em;
       border-top: 1px solid #ccc;
       font-size: 0.9em;
       color: #555;
       text-align: center;
-      background-color: #f9f9f9;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.8em;
-      z-index: 1000;
     }
     .dark footer {
-      background-color: #121212;
+      background: #1e1e1e;
+      border-color: #444;
     }
     .social-icons {
       display: flex;
