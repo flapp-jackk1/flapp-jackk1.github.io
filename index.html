@@ -11,11 +11,6 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-    }
-    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f9f9f9;
       color: #000;
@@ -37,23 +32,35 @@
       text-decoration: underline;
       outline: none;
     }
+
     header {
+      position: relative;
       width: 100%;
+      max-width: 960px;
       background: rgba(255, 255, 255, 0.65);
       padding: 1em 2em;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 2px solid #002d62;
+      user-select: none;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
     }
     header img {
       height: 72px;
+      flex-shrink: 0;
+      margin: 0 auto;
     }
     .menu-toggle {
       display: flex;
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
+      position: absolute;
+      top: 1.5em;
+      right: 2em;
+      z-index: 1100;
     }
     .menu-toggle span {
       width: 25px;
@@ -107,27 +114,30 @@
       border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      position: sticky;
+      bottom: 0;
     }
     .dark .dark-toggle {
       background-color: #215ec3;
     }
+
     main {
       width: 100%;
+      max-width: 960px;
+      padding: 0;
     }
+
     section {
       width: 100%;
-      min-height: 100vh;
       padding: 1.5em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
       background: white;
-      scroll-snap-align: start;
     }
     .dark section {
       background: #1e1e1e;
     }
+
     section h2 {
       margin-top: 0;
       color: #002d62;
@@ -164,13 +174,19 @@
       border-color: #666;
       color: #bbb;
     }
+
     footer {
       width: 100%;
+      max-width: 960px;
       padding: 1em 2em;
       border-top: 1px solid #ccc;
       font-size: 0.9em;
       color: #555;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8em;
     }
     .social-icons {
       display: flex;
@@ -188,8 +204,11 @@
       background: white;
       transition: background-color 0.3s ease, border-color 0.3s ease;
     }
-    .social-icons a:hover img {
-      filter: invert(100%) brightness(120%);
+    .social-icons a:hover,
+    .social-icons a:focus {
+      background-color: #002d62;
+      border-color: #001f3d;
+      outline: none;
     }
     .social-icons a img {
       width: 100%;
@@ -197,6 +216,35 @@
       object-fit: contain;
       filter: invert(0%);
       transition: filter 0.3s ease;
+    }
+    .social-icons a:hover img,
+    .social-icons a:focus img {
+      filter: invert(100%) brightness(120%);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        height: 100vh;
+        overflow-y: scroll;
+      }
+      main {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+      }
+      section {
+        height: 100vh;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      section#home {
+        padding-top: 6em;
+      }
+      section#contact {
+        padding-bottom: 6em;
+      }
     }
   </style>
 </head>
