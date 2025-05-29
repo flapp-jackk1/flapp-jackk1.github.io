@@ -11,7 +11,8 @@
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(#000011, #0b0c2a);
+      /* Faster gradient: space dark blue (#000011) to atmospheric blue (#87ceeb) at bottom */
+      background: linear-gradient(to bottom, #000011 0%, #000033 30%, #001155 50%, #003366 70%, #87ceeb 100%);
       color: #fff;
     }
     header {
@@ -64,6 +65,15 @@
       background: #0d0d2b;
       border-top: 1px solid #1f1f4a;
     }
+    /* Link style for TikTok */
+    a.tiktok-link {
+      color: #00ccff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.tiktok-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +102,7 @@
   <section id="projects">
     <h2>Current Projects</h2>
     <ul>
-      <li>Socials: Follow our TikTok @novalabs.tiktok</li>
+      <li>Socials: Follow our TikTok <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" class="tiktok-link">@novalabs.tiktok</a></li>
     </ul>
   </section>
 
