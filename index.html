@@ -155,6 +155,19 @@
         border-width: 0;
       }
     }
+
+    /* New animation for fading out and moving up (removing oldest popup) */
+    @keyframes fadeUpOut {
+      to {
+        opacity: 0;
+        transform: translateY(-50%);
+        height: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-width: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -222,21 +235,20 @@
       // Append new popup at end (bottom visually)
       popupContainer.appendChild(popup);
 
-      // Animate existing popups (except the new one) moving UP by (popup height + gap)
-      const gap = 8; // gap in px (0.5em ~ 8px)
+      const gap = 8; // gap in px between popups
       const popupHeight = popup.offsetHeight || 48; // fallback height
       const moveUpDistance = popupHeight + gap;
 
-      // Get all children except last (new popup)
+      // Move existing popups (except the new one) UP by (popup height + gap)
       const childrenToMove = Array.from(popupContainer.children).slice(0, -1);
 
-      // Reset all transforms first for smoothness
+      // Apply transform up with transition
       childrenToMove.forEach(child => {
         child.style.transition = 'transform 0.3s ease';
         child.style.transform = `translateY(-${moveUpDistance}px)`;
       });
 
-      // After the animation duration, reset transform to zero (so next time we can animate again)
+      // After move up animation, reset transform to zero so they can be animated next time
       setTimeout(() => {
         childrenToMove.forEach(child => {
           child.style.transition = 'transform 0.3s ease';
@@ -244,11 +256,12 @@
         });
       }, 300);
 
-      // Remove oldest popup if more than MAX_POPUPS
+      // If exceeding max popups, remove the oldest with fade + move up animation
       if (popupContainer.children.length > MAX_POPUPS) {
         const oldest = popupContainer.children[0];
         if (oldest) {
-          oldest.style.animation = 'fadeOut 0.5s forwards';
+          // Add fadeUpOut animation to fade and move up the oldest popup before removal
+          oldest.style.animation = 'fadeUpOut 0.5s forwards';
           oldest.addEventListener('animationend', () => {
             if (oldest.parentElement === popupContainer) {
               popupContainer.removeChild(oldest);
@@ -257,7 +270,7 @@
         }
       }
 
-      // Auto fadeout current popup after 3 seconds
+      // Auto fadeout the current popup after 3 seconds
       setTimeout(() => {
         popup.style.animation = 'fadeOut 0.5s forwards';
         popup.addEventListener('animationend', () => {
