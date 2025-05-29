@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://novalabs.space/sitemap.xml
+Sitemap: https://home.nova-labs.space/sitemap.xml
