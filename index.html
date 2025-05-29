@@ -24,24 +24,44 @@
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* center horizontally */
+      min-height: 100vh;
+      text-align: center;
     }
+
     header {
       position: relative;
       width: 100%;
+      max-width: 960px;
       background: rgba(0, 0, 0, 0.65);
-      padding: 1em;
-      text-align: center;
+      padding: 1em 2em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 2px solid #005f99;
-      z-index: 1000;
+      box-sizing: border-box;
+      margin: 0 auto;
     }
+
+    header img {
+      height: 48px;
+      user-select: none;
+    }
+
     header h1 {
       margin: 0;
       font-size: 2.5rem;
       color: #00ccff;
+      flex-grow: 1;
+      text-align: center;
     }
+
     nav {
-      margin-top: 0.5em;
+      margin-top: 0;
     }
+
     nav a {
       color: #fff;
       text-decoration: none;
@@ -49,23 +69,28 @@
       font-weight: bold;
       transition: color 0.3s ease;
     }
+
     nav a:hover {
       color: #00ccff;
       text-decoration: underline;
     }
+
     section {
       padding: 2em;
-      max-width: 800px;
-      margin: auto;
+      max-width: 960px;
+      margin: 2em auto;
       background: rgba(0, 0, 0, 0.65);
       border-radius: 10px;
-      margin-top: 4em;
+      box-sizing: border-box;
+      text-align: center;
     }
+
     h2 {
       border-bottom: 2px solid #333;
       padding-bottom: 0.5em;
       color: #fff;
     }
+
     a.button {
       display: inline-block;
       margin-top: 1em;
@@ -78,29 +103,49 @@
       transition: background-color 0.3s ease;
       cursor: pointer;
     }
+
     a.button:hover {
       background: #0099cc;
     }
+
+    section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    section ul li {
+      margin-bottom: 0.5em;
+    }
+
     section ul li a {
       color: #00ccff;
       text-decoration: none;
       font-weight: bold;
     }
+
     section ul li a:hover {
       text-decoration: underline;
     }
+
     footer {
+      max-width: 960px;
+      margin: 3em auto 1em;
       text-align: center;
       padding: 2em;
       font-size: 0.8em;
       background: rgba(0, 0, 0, 0.65);
       border-top: 1px solid #005f99;
       color: #fff;
-      margin-top: 3em;
+      box-sizing: border-box;
+    }
+
+    footer img {
+      height: 30px;
+      margin-bottom: 0.5em;
+      user-select: none;
     }
 
     /* Popup Container and messages */
-
     #popup-container {
       position: fixed;
       bottom: 1em;
@@ -156,7 +201,6 @@
       }
     }
 
-    /* New animation for fading out and moving up (removing oldest popup) */
     @keyframes fadeUpOut {
       to {
         opacity: 0;
@@ -168,24 +212,11 @@
         border-width: 0;
       }
     }
-
-    /* Disabled button style */
-    a.button[aria-disabled="true"] {
-      pointer-events: auto;
-      opacity: 0.6;
-      cursor: default;
-      background: #00ccff; /* keep color */
-      color: #000;
-      text-decoration: none;
-    }
-    a.button[aria-disabled="true"]:hover {
-      background: #00ccff; /* no hover effect */
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
   <header>
+    <img src="logo.png" alt="NovaLabs Logo" />
     <h1>NovaLabs • Space</h1>
     <nav>
       <a href="#home">Home</a>
@@ -204,7 +235,7 @@
   <section id="research">
     <h2>Featured Research</h2>
     <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
-    <a href="#" class="button" id="read-paper-btn" aria-disabled="true">Read the Full Paper</a>
+    <a href="#" class="button" id="read-paper-btn" aria-disabled="true" tabindex="-1" style="opacity: 0.6; cursor: default;">Read the Full Paper (Coming Soon)</a>
   </section>
 
   <section id="projects">
@@ -235,61 +266,10 @@
   <div id="popup-container"></div>
 
   <script>
+    // Disabled paper link, no popup needed
     const readButton = document.getElementById('read-paper-btn');
-    const popupContainer = document.getElementById('popup-container');
-    const MAX_POPUPS = 3;
-
     readButton.addEventListener('click', (event) => {
       event.preventDefault();
-
-      const popup = document.createElement('div');
-      popup.className = 'popup-message';
-      popup.textContent = "This isn’t available yet, check in later.";
-
-      popupContainer.appendChild(popup);
-
-      const gap = 8; // gap in px between popups
-      const popupHeight = popup.offsetHeight || 48;
-      const moveUpDistance = popupHeight + gap;
-
-      // Move existing popups (except the new one) UP by (popup height + gap)
-      const childrenToMove = Array.from(popupContainer.children).slice(0, -1);
-
-      childrenToMove.forEach(child => {
-        child.style.transition = 'transform 0.3s ease';
-        child.style.transform = `translateY(-${moveUpDistance}px)`;
-      });
-
-      // Reset transform after animation
-      setTimeout(() => {
-        childrenToMove.forEach(child => {
-          child.style.transition = 'transform 0.3s ease';
-          child.style.transform = 'translateY(0)';
-        });
-      }, 300);
-
-      // Remove oldest popup if exceeding max allowed
-      if (popupContainer.children.length > MAX_POPUPS) {
-        const oldest = popupContainer.children[0];
-        if (oldest) {
-          oldest.style.animation = 'fadeUpOut 0.5s forwards';
-          oldest.addEventListener('animationend', () => {
-            if (oldest.parentElement === popupContainer) {
-              popupContainer.removeChild(oldest);
-            }
-          });
-        }
-      }
-
-      // Auto fadeout current popup after 3 seconds
-      setTimeout(() => {
-        popup.style.animation = 'fadeOut 0.5s forwards';
-        popup.addEventListener('animationend', () => {
-          if (popup.parentElement === popupContainer) {
-            popupContainer.removeChild(popup);
-          }
-        });
-      }, 3000);
     });
   </script>
 </body>
