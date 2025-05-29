@@ -18,9 +18,10 @@
       flex-direction: column;
       min-height: 100vh;
       align-items: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     a {
-      color: #000;
+      color: inherit;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s ease;
@@ -61,28 +62,121 @@
     }
     nav a {
       white-space: nowrap;
+      cursor: pointer;
+    }
+
+    /* Hamburger Menu Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 1em;
+      z-index: 10;
+    }
+    .menu-toggle span {
+      width: 100%;
+      height: 3px;
+      background: #005f99;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      display: block;
+      transform-origin: center;
+    }
+    /* Animate hamburger to X when active */
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    body.dark-mode header {
+      background: rgba(18, 18, 18, 0.85);
+      border-bottom-color: #3399ff;
+    }
+    body.dark-mode nav a:hover,
+    body.dark-mode nav a:focus {
+      color: #3399ff;
+      text-decoration: underline;
+    }
+    body.dark-mode footer {
+      border-top-color: #444;
+      color: #aaa;
+    }
+    body.dark-mode .social-icons a {
+      background: #222;
+      border-color: #3399ff;
+    }
+    body.dark-mode .social-icons a:hover,
+    body.dark-mode .social-icons a:focus {
+      background-color: #3399ff;
+      border-color: #005f99;
+    }
+    body.dark-mode .btn-soon {
+      background-color: #444;
+      border-color: #666;
+      color: #bbb;
+      box-shadow: inset 0 0 5px #666;
+    }
+    body.dark-mode section {
+      background: #1e1e1e;
+      box-shadow: 0 0 8px rgba(255,255,255,0.1);
     }
 
     /* Mobile styles */
     @media (max-width: 768px) {
       header {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         padding: 1em;
-        justify-content: center;
         max-width: 100%;
         margin: 0.5em 0 1em 0;
       }
-      header img {
-        order: 1;
-        margin-bottom: 0.5em;
-      }
       nav {
-        order: 2;
-        width: 100%;
-        justify-content: center;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: rgba(255,255,255,0.95);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        flex-direction: column;
         gap: 1em;
-        flex-wrap: wrap;
-        min-width: 0;
+        padding: 1em 2em;
+        min-width: 160px;
+        height: calc(100vh - 60px);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 9;
+        border-left: 2px solid #005f99;
+      }
+      nav.open {
+        transform: translateX(0);
+      }
+      nav a {
+        white-space: normal;
+        font-size: 1.2em;
+      }
+      /* Show hamburger */
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* Dark mode nav background */
+      body.dark-mode nav {
+        background: rgba(18, 18, 18, 0.95);
+        border-left-color: #3399ff;
       }
     }
 
@@ -103,6 +197,7 @@
       padding: 1.5em;
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
       border-radius: 6px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
     section h2 {
       margin-top: 0;
@@ -149,6 +244,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.8em;
+      transition: color 0.3s ease, border-color 0.3s ease;
     }
 
     /* Social icons container */
@@ -185,17 +281,59 @@
     .social-icons a:focus img {
       filter: invert(100%) brightness(120%);
     }
+
+    /* Dark mode toggle button */
+    .dark-mode-toggle {
+      background: none;
+      border: 2px solid #005f99;
+      border-radius: 6px;
+      padding: 0.4em 0.8em;
+      font-weight: 600;
+      font-size: 0.9em;
+      color: #005f99;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      user-select: none;
+      align-self: center;
+      margin-top: 1em;
+      width: 100%;
+      max-width: 150px;
+    }
+    .dark-mode-toggle:hover,
+    .dark-mode-toggle:focus {
+      background-color: #005f99;
+      color: white;
+      outline: none;
+    }
+    body.dark-mode .dark-mode-toggle {
+      color: #3399ff;
+      border-color: #3399ff;
+    }
+    body.dark-mode .dark-mode-toggle:hover,
+    body.dark-mode .dark-mode-toggle:focus {
+      background-color: #3399ff;
+      color: #121212;
+    }
   </style>
 </head>
 <body>
   <header>
     <img src="logo.png" alt="NovaLabs Logo" />
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+    
+    <!-- Hamburger menu button -->
+    <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="primary-navigation">
+      <a href="#home" tabindex="0">Home</a>
+      <a href="#research" tabindex="0">Research</a>
+      <a href="#projects" tabindex="0">Projects</a>
+      <a href="#about" tabindex="0">About</a>
+      <a href="#contact" tabindex="0">Contact</a>
+      <button class="dark-mode-toggle" aria-pressed="false" type="button">Dark Mode</button>
     </nav>
   </header>
 
@@ -241,5 +379,47 @@
       &copy; 2025 NovaLabs. All rights reserved.
     </div>
   </footer>
+
+  <script>
+    // Toggle navigation menu on small screens
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('primary-navigation');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Dark mode toggle
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+
+    // Check saved preference in localStorage
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+      darkModeToggle.textContent = 'Light Mode';
+      darkModeToggle.setAttribute('aria-pressed', 'true');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark-mode');
+      darkModeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      darkModeToggle.setAttribute('aria-pressed', isDark);
+      // Save preference
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    });
+
+    // Close nav menu when a link is clicked (on mobile)
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          menuToggle.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
