@@ -18,113 +18,132 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 
   <style>
+    /* Reset & Base */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
+      color: #000;
       display: flex;
       flex-direction: column;
-      align-items: center; /* center horizontally */
+      align-items: center;
       min-height: 100vh;
       text-align: center;
     }
 
+    /* Header */
     header {
       position: relative;
       width: 100%;
       max-width: 960px;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(255, 255, 255, 0.65); /* white, 65% transparent */
       padding: 1em 2em;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 2px solid #005f99;
-      box-sizing: border-box;
       margin: 0 auto;
-    }
-
-    header img {
-      height: 48px;
+      color: #000;
       user-select: none;
     }
-
+    header img {
+      height: 48px;
+      flex-shrink: 0;
+    }
     header h1 {
       margin: 0;
       font-size: 2.5rem;
-      color: #00ccff;
+      color: #000;
       flex-grow: 1;
       text-align: center;
     }
-
     nav {
-      margin-top: 0;
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 180px;
     }
-
     nav a {
-      color: #fff;
+      color: #000;
       text-decoration: none;
-      margin: 0 1em;
       font-weight: bold;
       transition: color 0.3s ease;
+      white-space: nowrap;
     }
-
-    nav a:hover {
-      color: #00ccff;
+    nav a:hover,
+    nav a:focus {
+      color: #005f99;
       text-decoration: underline;
+      outline: none;
     }
 
+    /* Section styling */
     section {
       padding: 2em;
       max-width: 960px;
       margin: 2em auto;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-sizing: border-box;
+      color: #000;
       text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
     }
-
     h2 {
-      border-bottom: 2px solid #333;
+      border-bottom: 2px solid #005f99;
       padding-bottom: 0.5em;
-      color: #fff;
+      color: #005f99;
+      margin-bottom: 1em;
     }
 
     a.button {
       display: inline-block;
       margin-top: 1em;
-      padding: 0.5em 1em;
-      background: #00ccff;
-      color: #000;
+      padding: 0.5em 1.2em;
+      background: #005f99;
+      color: #fff;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
       transition: background-color 0.3s ease;
       cursor: pointer;
     }
-
-    a.button:hover {
-      background: #0099cc;
+    a.button:hover,
+    a.button:focus {
+      background: #003f66;
+      outline: none;
+    }
+    a.button[aria-disabled="true"] {
+      opacity: 0.6;
+      cursor: default;
+      pointer-events: none;
     }
 
     section ul {
       list-style: none;
       padding-left: 0;
+      margin: 0 auto;
+      max-width: 600px;
     }
-
     section ul li {
-      margin-bottom: 0.5em;
+      margin-bottom: 0.7em;
+      font-weight: 600;
+      color: #333;
     }
-
     section ul li a {
-      color: #00ccff;
+      color: #005f99;
       text-decoration: none;
       font-weight: bold;
     }
-
-    section ul li a:hover {
+    section ul li a:hover,
+    section ul li a:focus {
       text-decoration: underline;
+      outline: none;
     }
 
     footer {
@@ -133,16 +152,16 @@
       text-align: center;
       padding: 2em;
       font-size: 0.8em;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(255, 255, 255, 0.65);
       border-top: 1px solid #005f99;
-      color: #fff;
+      color: #000;
       box-sizing: border-box;
+      user-select: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    footer img {
-      height: 30px;
-      margin-bottom: 0.5em;
-      user-select: none;
+    footer p {
+      margin: 0.2em 0;
     }
 
     /* Popup Container and messages */
@@ -177,7 +196,6 @@
       min-width: 280px;
       max-width: 400px;
       text-align: center;
-
       animation: slideUpIn 0.5s forwards;
       transition: transform 0.3s ease;
     }
@@ -189,27 +207,49 @@
       }
     }
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: translateY(50%);
-        height: 0;
-        margin: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        border-width: 0;
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+        padding: 1em;
+        justify-content: center;
+      }
+      header h1 {
+        order: 3;
+        flex-basis: 100%;
+        margin: 0.5em 0 0 0;
+        font-size: 2rem;
+      }
+      nav {
+        order: 2;
+        justify-content: center;
+        width: 100%;
+        margin-top: 0.5em;
+        gap: 0.75em;
+      }
+      header img {
+        order: 1;
+        margin-bottom: 0.5em;
+      }
+      section {
+        margin: 1em;
+        padding: 1.5em;
+      }
+      section ul {
+        max-width: 100%;
+      }
+      a.button {
+        font-size: 1rem;
       }
     }
 
-    @keyframes fadeUpOut {
-      to {
-        opacity: 0;
-        transform: translateY(-50%);
-        height: 0;
-        margin: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        border-width: 0;
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      a.button {
+        padding: 0.5em 1em;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -235,7 +275,7 @@
   <section id="research">
     <h2>Featured Research</h2>
     <p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, Sat 19th July</p>
-    <a href="#" class="button" id="read-paper-btn" aria-disabled="true" tabindex="-1" style="opacity: 0.6; cursor: default;">Read the Full Paper (Coming Soon)</a>
+    <a href="#" class="button" id="read-paper-btn" aria-disabled="true" tabindex="-1">Read the Full Paper (Coming Soon)</a>
   </section>
 
   <section id="projects">
@@ -252,12 +292,12 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #00ccff;">socials.novalabs@gmail.com</a></p>
+    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #005f99;">socials.novalabs@gmail.com</a></p>
   </section>
 
   <footer>
     <p>© 2025 Nova-Labs • Space. All rights reserved.</p>
-    <p style="font-size: 0.7em; color: #ccc; margin-top: 0.5em;">
+    <p style="font-size: 0.7em; color: #444; margin-top: 0.5em;">
       Image Credit: “Islands in the Sky” — NASA astronaut Jeff Williams, Expedition 47, International Space Station, March 3, 2016.
     </p>
   </footer>
