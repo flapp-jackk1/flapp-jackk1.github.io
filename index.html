@@ -26,7 +26,7 @@
       color: #fff;
     }
     header {
-      position: relative; /* changed from fixed so it scrolls */
+      position: relative;
       width: 100%;
       background: rgba(0, 0, 0, 0.65);
       padding: 1em;
@@ -59,7 +59,7 @@
       margin: auto;
       background: rgba(0, 0, 0, 0.65);
       border-radius: 10px;
-      margin-top: 4em; /* moved down so header won't overlap */
+      margin-top: 4em;
     }
     h2 {
       border-bottom: 2px solid #333;
@@ -107,13 +107,12 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      flex-direction: column; /* normal stack: bottom oldest, top newest */
+      flex-direction: column;
       gap: 0.5em;
       z-index: 2000;
       max-width: 90vw;
       pointer-events: none;
       align-items: center;
-      /* no max height, let them grow */
     }
 
     .popup-message {
@@ -125,7 +124,7 @@
       font-weight: bold;
       box-shadow: 0 0 8px #00ccffaa;
       opacity: 0;
-      transform: translateY(100%); /* start below */
+      transform: translateY(100%);
       pointer-events: auto;
       white-space: nowrap;
       user-select: none;
@@ -135,6 +134,7 @@
       text-align: center;
 
       animation: slideUpIn 0.5s forwards;
+      transition: transform 0.3s ease;
     }
 
     @keyframes slideUpIn {
@@ -213,16 +213,38 @@
     const MAX_POPUPS = 3;
 
     readButton.addEventListener('click', (event) => {
-      event.preventDefault(); // prevent link navigation
+      event.preventDefault();
 
       const popup = document.createElement('div');
       popup.className = 'popup-message';
       popup.textContent = "This isn’t available yet, check in later.";
 
-      // Append popup at the END (top of stack visually)
+      // Append new popup at end (bottom visually)
       popupContainer.appendChild(popup);
 
-      // If more than max, remove oldest (bottom = first child)
+      // Animate existing popups (except the new one) moving UP by (popup height + gap)
+      const gap = 8; // gap in px (0.5em ~ 8px)
+      const popupHeight = popup.offsetHeight || 48; // fallback height
+      const moveUpDistance = popupHeight + gap;
+
+      // Get all children except last (new popup)
+      const childrenToMove = Array.from(popupContainer.children).slice(0, -1);
+
+      // Reset all transforms first for smoothness
+      childrenToMove.forEach(child => {
+        child.style.transition = 'transform 0.3s ease';
+        child.style.transform = `translateY(-${moveUpDistance}px)`;
+      });
+
+      // After the animation duration, reset transform to zero (so next time we can animate again)
+      setTimeout(() => {
+        childrenToMove.forEach(child => {
+          child.style.transition = 'transform 0.3s ease';
+          child.style.transform = 'translateY(0)';
+        });
+      }, 300);
+
+      // Remove oldest popup if more than MAX_POPUPS
       if (popupContainer.children.length > MAX_POPUPS) {
         const oldest = popupContainer.children[0];
         if (oldest) {
