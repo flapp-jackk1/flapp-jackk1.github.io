@@ -1,414 +1,843 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Nova-Labs • Space - Independent astronomy research project." />
-  <meta name="keywords" content="Nova, Labs, Nova Labs, nova labs space, NovaLabs dot Space, astronomy, research, exoplanet, student space initiative, space, nova-labs • space, novalabs, Nova-Labs • Space" />
-  <meta name="author" content="NovaLabs Space" />
-  <meta name="robots" content="index, follow" />
+<link rel="icon" href="favicon.png" type="image/png" />
 
-  <title>Nova-Labs • Space | Astronomy and Space Research</title>
+<meta charset="UTF-8" />
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <style>
-    :root {
-      --color-primary: #002d62; /* New blue */
-      --color-primary-light: #004080;
-      --color-primary-dark: #001f43;
-      --color-text-light: #eee;
-      --color-text-dark: #333;
-      --color-bg-light: #fff;
-      --color-bg-dark: #121212;
-    }
 
-    /* Base */
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: var(--color-text-light);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      text-align: center;
-    }
 
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.65);
-      color: #000;
-      padding: 1em 0.5em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-sizing: border-box;
-      backdrop-filter: saturate(180%) blur(20px);
-    }
+<!-- SEO Meta Tags -->
 
-    /* Logo container */
-    .logo-container {
-      display: flex;
-      align-items: center;
-      margin-left: 1em;
-    }
+<meta name="description" content="Nova-Labs • Space - Independent astronomy research project." />
 
-    .logo-container img {
-      height: 60px;  /* Increased from 40px */
-      width: auto;
-      user-select: none;
-    }
+<meta name="keywords" content="Nova, Labs, Nova Labs, nova labs space, NovaLabs dot Space, astronomy, research, exoplanet, student space initiative, space, nova-labs • space, novalabs, Nova-Labs • Space" />
 
-    /* Navigation */
-    nav {
-      margin-right: 1em;
-    }
+<meta name="author" content="NovaLabs Space" />
 
-    nav a {
-      color: var(--color-primary);
-      text-decoration: none;
-      margin: 0 1em;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
+<meta name="robots" content="index, follow" />
 
-    nav a:hover {
-      color: var(--color-primary-dark);
-      text-decoration: underline;
-    }
 
-    /* Dark mode toggle button */
-    #dark-mode-toggle {
-      background-color: var(--color-primary);
-      color: white;
-      border: none;
-      padding: 0.4em 0.8em;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      margin-left: 1em;
-      font-size: 0.9rem;
-      user-select: none;
-    }
 
-    #dark-mode-toggle:hover {
-      background-color: var(--color-primary-dark);
-    }
+<title>Nova-Labs • Space | Astronomy and Space Research</title>
 
-    /* Section styling */
-    section {
-      background: rgba(0, 0, 0, 0.65);
-      border-radius: 10px;
-      max-width: 800px;
-      margin: 6em auto 3em;
-      padding: 2em;
-      color: var(--color-text-light);
-      box-sizing: border-box;
-      text-align: left;
-    }
 
-    section h2 {
-      border-bottom: 2px solid #333;
-      padding-bottom: 0.5em;
-      margin-top: 0;
-      color: var(--color-text-light);
-      text-align: center;
-    }
 
-    /* Paragraphs */
-    p {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      margin: 1em 0;
-    }
+<!-- Font -->
 
-    /* Buttons */
-    a.button {
-      display: inline-block;
-      margin-top: 1em;
-      padding: 0.6em 1.2em;
-      background: var(--color-primary);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-align: center;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 
-    a.button:hover {
-      background: var(--color-primary-dark);
-    }
 
-    /* List links */
-    section ul li a {
-      color: var(--color-primary);
-      font-weight: bold;
-      text-decoration: none;
-    }
 
-    section ul li a:hover {
-      text-decoration: underline;
-    }
+<style>
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2em 1em;
-      font-size: 0.8em;
-      background: rgba(0, 0, 0, 0.65);
-      border-top: 1px solid var(--color-primary);
-      color: var(--color-text-light);
-      margin-top: 3em;
-    }
+:root {
 
-    footer p.credit {
-      font-size: 0.7em;
-      color: #ccc;
-      margin-top: 0.5em;
-    }
+--color-primary: #002d62; /* New blue */
 
-    /* Popup Container */
-    #popup-container {
-      position: fixed;
-      bottom: 1em;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-      z-index: 2000;
-      max-width: 90vw;
-      pointer-events: none;
-      align-items: center;
-    }
+--color-primary-light: #004080;
 
-    .popup-message {
-      background-color: rgba(0, 0, 0, 0.85);
-      color: var(--color-primary);
-      padding: 1em 2em;
-      border: 1px solid var(--color-primary);
-      border-radius: 10px;
-      font-weight: bold;
-      box-shadow: 0 0 8px var(--color-primary);
-      opacity: 0;
-      transform: translateY(100%);
-      pointer-events: auto;
-      white-space: nowrap;
-      user-select: none;
-      font-size: 1rem;
-      min-width: 280px;
-      max-width: 400px;
-      text-align: center;
+--color-primary-dark: #001f43;
 
-      animation: slideUpIn 0.5s forwards;
-      transition: transform 0.3s ease;
-    }
+--color-text-light: #eee;
 
-    @keyframes slideUpIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+--color-text-dark: #333;
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: translateY(50%);
-        height: 0;
-        margin: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        border-width: 0;
-      }
-    }
+--color-bg-light: #fff;
 
-    @keyframes fadeUpOut {
-      to {
-        opacity: 0;
-        transform: translateY(-50%);
-        height: 0;
-        margin: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        border-width: 0;
-      }
-    }
+--color-bg-dark: #121212;
 
-    /* Social icons container */
-    .social-icons {
-      margin-top: 1em;
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-    }
+}
 
-    .social-icons a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
 
-    .social-icons a img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
 
-    .social-icons a:hover {
-      transform: scale(1.1);
-    }
+/* Base */
 
-    /* Dark Mode Styles */
-    body.dark-mode {
-      background: var(--color-bg-dark) url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: var(--color-text-light);
-    }
+body {
 
-    body.dark-mode section {
-      background: rgba(18, 18, 18, 0.85);
-      color: var(--color-text-light);
-    }
+margin: 0;
 
-    body.dark-mode footer {
-      background: rgba(18, 18, 18, 0.85);
-      border-top-color: var(--color-primary-light);
-      color: var(--color-text-light);
-    }
+font-family: 'Orbitron', sans-serif;
 
-    body.dark-mode nav a {
-      color: var(--color-primary-light);
-    }
+background: url('background.jpg') no-repeat center center fixed;
 
-    body.dark-mode nav a:hover {
-      color: var(--color-primary);
-    }
+background-size: cover;
 
-    body.dark-mode a.button {
-      background: var(--color-primary-light);
-      color: #fff;
-    }
+color: var(--color-text-light);
 
-    body.dark-mode a.button:hover {
-      background: var(--color-primary);
-    }
+transition: background-color 0.3s ease, color 0.3s ease;
 
-    body.dark-mode .popup-message {
-      color: var(--color-primary-light);
-      border-color: var(--color-primary-light);
-      box-shadow: 0 0 8px var(--color-primary-light);
-      background-color: rgba(18, 18, 18, 0.85);
-    }
+text-align: center;
 
-  </style>
+}
+
+
+
+/* Header */
+
+header {
+
+position: fixed;
+
+top: 0;
+
+width: 100%;
+
+background: rgba(255, 255, 255, 0.65);
+
+color: #000;
+
+padding: 1em 0.5em;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+z-index: 1000;
+
+box-sizing: border-box;
+
+backdrop-filter: saturate(180%) blur(20px);
+
+}
+
+
+
+/* Logo container */
+
+.logo-container {
+
+display: flex;
+
+align-items: center;
+
+margin-left: 1em;
+
+}
+
+
+
+.logo-container img {
+
+height: 60px; /* increased from 40px */
+
+width: auto;
+
+user-select: none;
+
+}
+
+
+
+/* Navigation */
+
+nav {
+
+margin-right: 1em;
+
+}
+
+
+
+nav a {
+
+color: var(--color-primary);
+
+text-decoration: none;
+
+margin: 0 1em;
+
+font-weight: 600;
+
+font-size: 1rem;
+
+transition: color 0.3s ease;
+
+}
+
+
+
+nav a:hover {
+
+color: var(--color-primary-dark);
+
+text-decoration: underline;
+
+}
+
+
+
+/* Dark mode toggle button */
+
+#dark-mode-toggle {
+
+background-color: var(--color-primary);
+
+color: white;
+
+border: none;
+
+padding: 0.4em 0.8em;
+
+border-radius: 5px;
+
+cursor: pointer;
+
+font-weight: 600;
+
+transition: background-color 0.3s ease;
+
+margin-left: 1em;
+
+font-size: 0.9rem;
+
+user-select: none;
+
+}
+
+
+
+#dark-mode-toggle:hover {
+
+background-color: var(--color-primary-dark);
+
+}
+
+
+
+/* Section styling */
+
+section {
+
+background: rgba(0, 0, 0, 0.65);
+
+border-radius: 10px;
+
+max-width: 800px;
+
+margin: 6em auto 3em;
+
+padding: 2em;
+
+color: var(--color-text-light);
+
+box-sizing: border-box;
+
+text-align: left;
+
+}
+
+
+
+section h2 {
+
+border-bottom: 2px solid #333;
+
+padding-bottom: 0.5em;
+
+margin-top: 0;
+
+color: var(--color-text-light);
+
+text-align: center;
+
+}
+
+
+
+/* Paragraphs */
+
+p {
+
+font-size: 1.1rem;
+
+line-height: 1.5;
+
+margin: 1em 0;
+
+}
+
+
+
+/* Buttons */
+
+a.button {
+
+display: inline-block;
+
+margin-top: 1em;
+
+padding: 0.6em 1.2em;
+
+background: var(--color-primary);
+
+color: #fff;
+
+text-decoration: none;
+
+border-radius: 6px;
+
+font-weight: 700;
+
+cursor: pointer;
+
+transition: background-color 0.3s ease;
+
+text-align: center;
+
+}
+
+
+
+a.button:hover {
+
+background: var(--color-primary-dark);
+
+}
+
+
+
+/* List links */
+
+section ul li a {
+
+color: var(--color-primary);
+
+font-weight: bold;
+
+text-decoration: none;
+
+}
+
+
+
+section ul li a:hover {
+
+text-decoration: underline;
+
+}
+
+
+
+/* Footer */
+
+footer {
+
+text-align: center;
+
+padding: 2em 1em;
+
+font-size: 0.8em;
+
+background: rgba(0, 0, 0, 0.65);
+
+border-top: 1px solid var(--color-primary);
+
+color: var(--color-text-light);
+
+margin-top: 3em;
+
+}
+
+
+
+footer p.credit {
+
+font-size: 0.7em;
+
+color: #ccc;
+
+margin-top: 0.5em;
+
+}
+
+
+
+/* Popup Container */
+
+#popup-container {
+
+position: fixed;
+
+bottom: 1em;
+
+left: 50%;
+
+transform: translateX(-50%);
+
+display: flex;
+
+flex-direction: column;
+
+gap: 0.5em;
+
+z-index: 2000;
+
+max-width: 90vw;
+
+pointer-events: none;
+
+align-items: center;
+
+}
+
+
+
+.popup-message {
+
+background-color: rgba(0, 0, 0, 0.85);
+
+color: var(--color-primary);
+
+padding: 1em 2em;
+
+border: 1px solid var(--color-primary);
+
+border-radius: 10px;
+
+font-weight: bold;
+
+box-shadow: 0 0 8px var(--color-primary);
+
+opacity: 0;
+
+transform: translateY(100%);
+
+pointer-events: auto;
+
+white-space: nowrap;
+
+user-select: none;
+
+font-size: 1rem;
+
+min-width: 280px;
+
+max-width: 400px;
+
+text-align: center;
+
+
+
+animation: slideUpIn 0.5s forwards;
+
+transition: transform 0.3s ease;
+
+}
+
+
+
+@keyframes slideUpIn {
+
+to {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+}
+
+
+
+@keyframes fadeOut {
+
+to {
+
+opacity: 0;
+
+transform: translateY(50%);
+
+height: 0;
+
+margin: 0;
+
+padding-top: 0;
+
+padding-bottom: 0;
+
+border-width: 0;
+
+}
+
+}
+
+
+
+@keyframes fadeUpOut {
+
+to {
+
+opacity: 0;
+
+transform: translateY(-50%);
+
+height: 0;
+
+margin: 0;
+
+padding-top: 0;
+
+padding-bottom: 0;
+
+border-width: 0;
+
+}
+
+}
+
+
+
+/* Social icons container */
+
+.social-icons {
+
+margin-top: 1em;
+
+display: flex;
+
+justify-content: center;
+
+gap: 1em;
+
+}
+
+
+
+.social-icons a {
+
+display: inline-block;
+
+width: 40px;
+
+height: 40px;
+
+border-radius: 50%;
+
+overflow: hidden;
+
+cursor: pointer;
+
+transition: transform 0.3s ease;
+
+}
+
+
+
+.social-icons a img {
+
+width: 100%;
+
+height: 100%;
+
+object-fit: cover;
+
+display: block;
+
+}
+
+
+
+.social-icons a:hover {
+
+transform: scale(1.1);
+
+}
+
+
+
+/* Dark Mode Styles */
+
+body.dark-mode {
+
+background: var(--color-bg-dark) url('background.jpg') no-repeat center center fixed;
+
+background-size: cover;
+
+color: var(--color-text-light);
+
+}
+
+
+
+body.dark-mode section {
+
+background: rgba(18, 18, 18, 0.85);
+
+color: var(--color-text-light);
+
+}
+
+
+
+body.dark-mode footer {
+
+background: rgba(18, 18, 18, 0.85);
+
+border-top-color: var(--color-primary-light);
+
+color: var(--color-text-light);
+
+}
+
+
+
+body.dark-mode nav a {
+
+color: var(--color-primary-light);
+
+}
+
+
+
+body.dark-mode nav a:hover {
+
+color: var(--color-primary);
+
+}
+
+
+
+body.dark-mode a.button {
+
+background: var(--color-primary-light);
+
+color: #fff;
+
+}
+
+
+
+body.dark-mode a.button:hover {
+
+background: var(--color-primary);
+
+}
+
+
+
+body.dark-mode .popup-message {
+
+color: var(--color-primary-light);
+
+border-color: var(--color-primary-light);
+
+box-shadow: 0 0 8px var(--color-primary-light);
+
+background-color: rgba(18, 18, 18, 0.85);
+
+}
+
+
+
+</style>
+
 </head>
+
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="NovaLabs Logo" draggable="false" />
-    </div>
-    <nav>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <button id="dark-mode-toggle" aria-label="Toggle dark mode">Dark Mode</button>
-    </nav>
-  </header>
 
-  <main>
-    <section id="research" tabindex="0" aria-label="Research section">
-      <h2>Research</h2>
-      <p>Nova-Labs • Space is an independent student-driven astronomy and space research initiative focused on exoplanet detection and analysis, as well as deepening understanding of our universe.</p>
-      <p>Our current focus includes:</p>
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Transit_method" target="_blank" rel="noopener noreferrer">Transit Method for Exoplanet Detection</a></li>
-        <li>Mathematical modelling and data analysis techniques</li>
-        <li>Developing software tools for astronomy research</li>
-      </ul>
-    </section>
+<header>
 
-    <section id="projects" tabindex="0" aria-label="Projects section">
-      <h2>Projects</h2>
-      <p>We are currently developing:</p>
-      <ul>
-        <li>Open-source Python tools for transit light curve analysis</li>
-        <li>Simulation models for spacecraft trajectory optimization</li>
-        <li>Collaborative databases for astronomical observations</li>
-      </ul>
-      <a href="projects.html" class="button" aria-label="Learn more about projects">Learn More</a>
-    </section>
+<div class="logo-container">
 
-    <section id="contact" tabindex="0" aria-label="Contact section">
-      <h2>Contact</h2>
-      <p>For inquiries, collaborations, or contributions, reach out via:</p>
-      <ul>
-        <li>Email: <a href="mailto:contact@novalabs.space">contact@novalabs.space</a></li>
-        <li>Twitter: <a href="https://twitter.com/NovaLabsSpace" target="_blank" rel="noopener noreferrer">@NovaLabsSpace</a></li>
-      </ul>
-    </section>
-  </main>
+<img src="logo.png" alt="NovaLabs Logo" />
 
-  <footer>
-    <p>&copy; 2025 Nova-Labs • Space. All rights reserved.</p>
-    <p class="credit">Website design by NovaLabs Space</p>
-  </footer>
+</div>
 
-  <!-- Popup container for error or info messages -->
-  <div id="popup-container" aria-live="polite" aria-atomic="true"></div>
+<nav>
 
-  <script>
-    // Dark mode toggle
-    const toggle = document.getElementById('dark-mode-toggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      // Update button text accordingly
-      if (document.body.classList.contains('dark-mode')) {
-        toggle.textContent = 'Light Mode';
-      } else {
-        toggle.textContent = 'Dark Mode';
-      }
-    });
+<a href="#home">Home</a>
 
-    // Popup message function
-    function popup(message) {
-      const container = document.getElementById('popup-container');
-      const popup = document.createElement('div');
-      popup.className = 'popup-message';
-      popup.textContent = message;
-      container.appendChild(popup);
+<a href="#research">Research</a>
 
-      // Animate out after 7 seconds (longer duration)
-      setTimeout(() => {
-        popup.style.animation = 'fadeOut 0.5s forwards';
-      }, 7000);
+<a href="#projects">Projects</a>
 
-      // Remove from DOM after fade out completes
-      popup.addEventListener('animationend', () => {
-        popup.remove();
-      });
-    }
+<a href="#about">About</a>
 
-    // Example usage (uncomment to test)
-    // popup('This is a longer-lasting error message.');
+<a href="#contact">Contact</a>
 
-  </script>
+</nav>
+
+<button id="dark-mode-toggle" aria-label="Toggle Dark Mode">Dark Mode</button>
+
+</header>
+
+
+
+<section id="home">
+
+<h2>Welcome to Nova-Labs • Space</h2>
+
+<p>We invite you to a better future, filled with peace, sustainability, and innovation. - NovaLabs. Tomorrow is a new day.</p>
+
+</section>
+
+
+
+<section id="research">
+
+<h2>Featured Research</h2>
+
+<p>Upcoming paper: 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method', 00:00 UTC, 01/06/2025</p>
+
+<a href="#" class="button" onclick="popup('Paper coming soon!')">Paper: Coming Soon</a>
+
+</section>
+
+
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<p>Check out our active projects including telescope design, AI astronomical data analysis, and more.</p>
+
+</section>
+
+
+
+<section id="about">
+
+<h2>About Nova-Labs</h2>
+
+<p>Nova-Labs is an independent astronomy research initiative focused on innovation and exploration.</p>
+
+</section>
+
+
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<ul>
+
+<li>Email: <a href="mailto:socials.novalabs@gmail.com">socials.novalabs@gmail.com</a></li>
+
+<li>Social Media: <a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener noreferrer">TikTok @novalabs.tiktok</a></li>
+
+</ul>
+
+</section>
+
+
+
+<footer>
+
+<div class="social-icons">
+
+<a href="mailto:socials.novalabs@gmail.com" title="Email">
+
+<img src="gmail.png" alt="Gmail Icon" />
+
+</a>
+
+<a href="https://www.tiktok.com/@novalabs.tiktok" target="_blank" rel="noopener noreferrer" title="TikTok">
+
+<img src="tiktok.png" alt="TikTok Icon" />
+
+</a>
+
+</div>
+
+<p class="credit">Nova-Labs • Space - Independent astronomy research project</p>
+
+</footer>
+
+
+
+<div id="popup-container"></div>
+
+
+
+<script>
+
+const toggleButton = document.getElementById('dark-mode-toggle');
+
+const body = document.body;
+
+
+
+// Load dark mode preference if saved
+
+if (localStorage.getItem('darkMode') === 'enabled') {
+
+body.classList.add('dark-mode');
+
+toggleButton.textContent = 'Light Mode';
+
+}
+
+
+
+toggleButton.addEventListener('click', () => {
+
+body.classList.toggle('dark-mode');
+
+if (body.classList.contains('dark-mode')) {
+
+toggleButton.textContent = 'Light Mode';
+
+localStorage.setItem('darkMode', 'enabled');
+
+} else {
+
+toggleButton.textContent = 'Dark Mode';
+
+localStorage.setItem('darkMode', 'disabled');
+
+}
+
+});
+
+
+
+// Popup function
+
+function popup(message) {
+
+const container = document.getElementById('popup-container');
+
+const popup = document.createElement('div');
+
+popup.className = 'popup-message';
+
+popup.textContent = message;
+
+container.appendChild(popup);
+
+
+
+// Animate out after 7 seconds (was 4s)
+
+setTimeout(() => {
+
+popup.style.animation = 'fadeOut 0.5s forwards';
+
+}, 7000);
+
+
+
+// Remove from DOM after fade out
+
+popup.addEventListener('animationend', () => {
+
+popup.remove();
+
+});
+
+}
+
+</script>
+
 </body>
+
 </html>
