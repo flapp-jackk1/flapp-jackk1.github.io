@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NOVA Labs | Astronomy & Exploration</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      /* Faster gradient: space dark blue (#000011) to atmospheric blue (#87ceeb) at bottom */
       background: linear-gradient(to bottom, #000011 0%, #000033 30%, #001155 50%, #003366 70%, #87ceeb 100%);
       color: #fff;
     }
@@ -29,12 +28,16 @@
       margin-top: 0.5em;
     }
     nav a {
-      color: #00ccff;
+      color: #33ccff;
+      text-shadow: 0 0 5px #33ccff;
       text-decoration: none;
       margin: 0 1em;
       font-weight: bold;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
     nav a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
       text-decoration: underline;
     }
     section {
@@ -54,6 +57,7 @@
       color: #000;
       text-decoration: none;
       border-radius: 5px;
+      transition: background 0.3s ease;
     }
     a.button:hover {
       background: #0099cc;
@@ -65,13 +69,16 @@
       background: #0d0d2b;
       border-top: 1px solid #1f1f4a;
     }
-    /* Link style for TikTok */
     a.tiktok-link {
-      color: #00ccff;
-      text-decoration: none;
+      color: #33ccff;
+      text-shadow: 0 0 5px #33ccff;
       font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
     a.tiktok-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
       text-decoration: underline;
     }
   </style>
@@ -113,7 +120,7 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #00ccff">contact@nova-labs.space</a></p>
+    <p>Email: <a href="mailto:socials.novalabs@gmail.com" style="color: #33ccff; text-shadow: 0 0 5px #33ccff;">contact@nova-labs.space</a></p>
   </section>
 
   <footer>
