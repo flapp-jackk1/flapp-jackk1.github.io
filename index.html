@@ -187,16 +187,42 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 1100;
       width: 100%;
       background: var(--header-bg);
       padding: 1em 2em;
       display: flex;
       align-items: center;
-      justify-content: center;  /* Center the logo */
+      justify-content: space-between;
       border-bottom: 2px solid var(--accent-color);
       user-select: none;
-      height: 100px;  /* Fixed height for header */
+      height: 100px;
+    }
+
+    .utc-display {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-family: 'Poppins', monospace;
+      min-width: 200px;
+    }
+
+    .utc-time {
+      font-size: 1.5em;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .utc-date {
+      font-size: 0.9em;
+      color: var(--text-secondary);
+    }
+
+    .header-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
     }
 
     header img {
@@ -211,12 +237,12 @@
       gap: 6px;
       position: absolute;
       right: 2em;
-      top: 50%;  /* Center vertically */
-      transform: translateY(-50%);  /* Center vertically */
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 1100;
       width: 36px;
       height: 36px;
-      justify-content: center;  /* Center the spans vertically */
+      justify-content: center;
     }
 
     .menu-toggle span {
@@ -240,39 +266,49 @@
 
     nav {
       display: none;
-      flex-direction: column;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 100px;
+      right: 0;
       background-color: var(--header-bg);
       z-index: 1050;
-      padding-top: 5em;
       align-items: center;
       justify-content: flex-start;
       font-size: 1.25em;
+      box-shadow: 0 4px 8px var(--shadow-color);
+      border-left: 2px solid var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
+      transform-origin: top right;
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+      padding: 1em;
+      width: 300px;
     }
 
     nav.show {
       display: flex;
+      flex-direction: column;
+      transform: scaleY(1);
     }
 
     nav a {
       padding: 1em;
       color: inherit;
       text-align: center;
-      width: 80%;
-      margin: 0.5em 0;
+      width: 100%;
+      margin: 0.25em 0;
       background: var(--bg-secondary);
       box-shadow: 0 0 8px var(--shadow-color);
       border-radius: 6px;
-      font-size: 1.25em;
+      font-size: 1.1em;
       font-weight: bold;
+      transition: all 0.2s ease;
     }
 
-    nav .dark-toggle {
-      margin-top: 2em;
+    nav a:hover {
+      transform: translateX(5px);
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
     }
 
     .dark-toggle {
@@ -293,18 +329,18 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2em;  /* Consistent spacing between sections */
-      margin: 0 auto 2em auto;  /* Center the main content */
+      gap: 2em;
+      margin: 0 auto 2em auto;
     }
 
     section {
       width: 100%;
-      max-width: 800px;  /* Slightly narrower than main for better readability */
+      max-width: 800px;
       background: var(--bg-secondary);
       padding: 2em 1.5em;
       box-shadow: 0 0 8px var(--shadow-color);
       border-radius: 6px;
-      margin: 0 auto;  /* Center each section */
+      margin: 0 auto;
     }
 
     section h2 {
@@ -411,6 +447,32 @@
     }
 
     @media screen and (max-width: 767px) {
+      nav {
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-left: none;
+        padding-top: 100px;
+      }
+
+      nav.show {
+        transform: translateX(0);
+      }
+
+      nav a {
+        width: 80%;
+      }
+
+      nav a:hover {
+        transform: translateX(0);
+      }
+
+      .menu-toggle.open + nav {
+        transform: translateX(0);
+      }
+
       .mobile-follower-section {
         display: none;
       }
@@ -483,6 +545,22 @@
         width: 100%;
         max-width: none;
       }
+
+      .utc-display {
+        display: none;
+      }
+    }
+
+    /* Desktop Styles */
+    @media screen and (min-width: 768px) {
+      .menu-toggle.open + nav {
+        transform: scaleY(1);
+      }
+
+      nav .dark-toggle {
+        margin-top: 1em;
+        width: 100%;
+      }
     }
 
     /* Add these new styles after your existing styles */
@@ -534,7 +612,13 @@
     </div>
 
     <header>
-      <img src="logo.png" alt="NovaLabs Logo" class="logo-image" />
+      <div class="utc-display">
+        <div class="utc-time" id="utc-time">00:00:00</div>
+        <div class="utc-date" id="utc-date">UTC</div>
+      </div>
+      <div class="header-center">
+        <img src="logo.png" alt="NovaLabs Logo" class="logo-image" />
+      </div>
       <div class="menu-toggle" onclick="toggleMenu(this)">
         <span></span>
         <span></span>
@@ -601,7 +685,7 @@
   function scrollToOffsetElement(id) {
     const target = document.getElementById(id);
     const headerHeight = document.querySelector('header').offsetHeight;
-    const extraOffset = 20; // Additional space above the section
+    const extraOffset = 20;
     const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
     const offsetPosition = elementPosition - headerHeight - extraOffset;
 
@@ -626,26 +710,22 @@
     });
   });
 
-  // Scroll to home section on page load
   window.addEventListener('load', function() {
-    window.scrollTo(0, 0);  // First ensure we're at the top
+    window.scrollTo(0, 0);
     setTimeout(() => {
       scrollToOffsetElement('home');
-    }, 100);  // Small delay to ensure everything is loaded
+    }, 100);
   });
 
-  // Theme handling
   const themeToggle = document.querySelector('.dark-toggle');
   const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-  // Function to set theme
   function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     themeToggle.textContent = theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
   }
 
-  // Initialize theme
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     setTheme(savedTheme);
@@ -655,37 +735,61 @@
     setTheme('light');
   }
 
-  // Theme toggle event listener
   themeToggle.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     setTheme(currentTheme === 'dark' ? 'light' : 'dark');
   });
 
-  // Listen for system theme changes
   prefersDarkScheme.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
       setTheme(e.matches ? 'dark' : 'light');
     }
   });
 
-  // ===== FOLLOWER COUNT SETTINGS =====
-  // Just change this number to update everything!
-  const CURRENT_FOLLOWERS = 45;  // <-- CHANGE THIS NUMBER ONLY
+  const CURRENT_FOLLOWERS = 45;
   const FOLLOWER_GOAL = 100;
-  // ==================================
 
   function updateFollowerBar(currentFollowers) {
     const percentage = Math.min((currentFollowers / FOLLOWER_GOAL) * 100, 100);
     
-    // Update desktop version
     const desktopBar = document.getElementById('follower-bar-desktop');
     if (desktopBar) {
       desktopBar.style.height = `${percentage}%`;
     }
   }
 
-  // Initialize with current follower count
   updateFollowerBar(CURRENT_FOLLOWERS);
+
+  function updateUTCTime() {
+    const now = new Date();
+    
+    // Format time
+    const timeOptions = { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        hour12: false,
+        timeZone: 'UTC'
+    };
+    const timeStr = now.toLocaleTimeString('en-US', timeOptions);
+    
+    // Format date
+    const dateOptions = { 
+        day: '2-digit', 
+        month: 'short', 
+        year: 'numeric',
+        timeZone: 'UTC'
+    };
+    const dateStr = now.toLocaleDateString('en-US', dateOptions);
+    
+    // Update the elements
+    document.getElementById('utc-time').textContent = timeStr;
+    document.getElementById('utc-date').textContent = `${dateStr} UTC`;
+  }
+
+  // Update immediately and then every second
+  updateUTCTime();
+  setInterval(updateUTCTime, 1000);
 </script>
 </body>
 </html>
