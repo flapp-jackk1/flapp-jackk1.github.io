@@ -279,153 +279,12 @@
       margin-bottom: 2em;
     }
 
-    /* Two-column layout styles */
     section {
       width: 100%;
       background: var(--bg-secondary);
       padding: 2em 1.5em;
       box-shadow: 0 0 8px var(--shadow-color);
       border-radius: 6px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2em;
-      align-items: start;
-    }
-
-    .section-content {
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-
-    .section-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 300px;
-      background: var(--bg-primary);
-      border-radius: 6px;
-      padding: 1em;
-      box-shadow: inset 0 0 8px var(--shadow-color);
-    }
-
-    .space-visualization {
-      width: 100%;
-      height: 300px;
-      border-radius: 6px;
-      overflow: hidden;
-      position: relative;
-      background: linear-gradient(45deg, var(--accent-color), #215ec3);
-    }
-
-    .transit-method {
-      width: 100%;
-      height: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .progress-container {
-      width: 100%;
-      background: var(--bg-primary);
-      border-radius: 10px;
-      padding: 1em;
-    }
-
-    .progress-bar {
-      width: 45%;
-      height: 20px;
-      background: var(--accent-color);
-      border-radius: 10px;
-      transition: width 1s ease;
-      position: relative;
-    }
-
-    .progress-label {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-weight: bold;
-    }
-
-    .timeline {
-      width: 100%;
-      position: relative;
-      padding: 20px 0;
-    }
-
-    .timeline-item {
-      padding: 10px 20px;
-      border-left: 2px solid var(--accent-color);
-      margin: 10px 0;
-      position: relative;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -6px;
-      top: 50%;
-      width: 10px;
-      height: 10px;
-      background: var(--accent-color);
-      border-radius: 50%;
-      transform: translateY(-50%);
-    }
-
-    .contact-form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-    }
-
-    .form-group label {
-      font-weight: bold;
-      color: var(--text-primary);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      padding: 0.8em;
-      border: 2px solid var(--border-color);
-      border-radius: 4px;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: inherit;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent-color);
-    }
-
-    .submit-btn {
-      padding: 0.8em 1.5em;
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-
-    .submit-btn:hover {
-      opacity: 0.9;
     }
 
     section h2 {
@@ -516,17 +375,6 @@
     .social-icons a:focus img {
       filter: invert(100%) brightness(120%);
     }
-
-    /* Media query for mobile responsiveness */
-    @media (max-width: 768px) {
-      section {
-        grid-template-columns: 1fr;
-      }
-      
-      .section-visual {
-        min-height: 200px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -560,99 +408,28 @@
     </header>
     <main>
       <section id="home">
-        <div class="section-content">
-          <h2>Welcome to Nova-Labs Space | NLS</h2>
-          <p>We welcome you to our community, more changes will happen on this site, so expect big changes from here onwards. P.S. Your support helps us massively, following our socials means alot, and it gives us motivation to put effort into here, knowing we have a community - Kind regards, Founder, Nova-Labs Space.</p>
-        </div>
-        <div class="section-visual">
-          <div class="space-visualization">
-            <canvas id="spaceCanvas"></canvas>
-          </div>
-        </div>
+        <h2>Welcome to Nova-Labs Space | NLS</h2>
+        <p>We welcome you to our community, more changes will happen on this site, so expect big changes from here onwards. P.S. Your support helps us massively, following our socials means alot, and it gives us motivation to put effort into here, knowing we have a community - Kind regards, Founder, Nova-Labs Space.</p>
       </section>
-
       <section id="research">
-        <div class="section-content">
-          <h2>Research</h2>
-          <p>Upcoming research paper evaluating the use of the transit method in discovering exoplanets, more info on contents and expected launch date to be available here and our socials. Stay tuned for more. 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method'</p>
-          <button class="btn-soon" aria-disabled="true" title="Coming soon">Paper Coming Soon</button>
-        </div>
-        <div class="section-visual">
-          <div class="transit-method">
-            <h3>The Transit Method</h3>
-            <p>When a planet passes between its star and Earth, it causes a small dip in the star's brightness. This is how we detect exoplanets!</p>
-            <div style="width: 100%; height: 200px; background: var(--bg-primary); border-radius: 6px; margin-top: 1em; display: flex; align-items: center; justify-content: center;">
-              <p>Transit Method Visualization Coming Soon</p>
-            </div>
-          </div>
-        </div>
+        <h2>Research</h2>
+        <p>Upcoming research paper evaluating the use of the transit method in discovering exoplanets, more info on contents and expected launch date to be available here and our socials. Stay tuned for more. 'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method'</p>
+        <button class="btn-soon" aria-disabled="true" title="Coming soon">Paper Coming Soon</button>
       </section>
-
       <section id="projects">
-        <div class="section-content">
-          <h2>Projects</h2>
-          <p>Development of this site. Growing our follower base, 100 followers on our tiktok is our first major goal.</p>
-        </div>
-        <div class="section-visual">
-          <div class="progress-container">
-            <h3 style="text-align: center; margin-bottom: 1em;">TikTok Follower Goal</h3>
-            <div class="progress-bar">
-              <span class="progress-label">45/100</span>
-            </div>
-            <p style="text-align: center; margin-top: 1em;">Current Progress: 45%</p>
-          </div>
-        </div>
+        <h2>Projects</h2>
+        <p>Development of this site. Growing our follower base, 100 followers on our tiktok is our first major goal.</p>
       </section>
-
       <section id="about">
-        <div class="section-content">
-          <h2>About Nova-Labs Space</h2>
-          <p>Nova-Labs Space, or NLS for short, is a small independent research project, focusing on the fields of astronomy and astrophysics. Founded 28 May, 2025. Started off as a small project on the backburner, however small we may be, we have big goals, which can only be supported by YOU.</p>
-        </div>
-        <div class="section-visual">
-          <div class="timeline">
-            <div class="timeline-item">
-              <h4>May 2025</h4>
-              <p>Founded Nova-Labs Space</p>
-            </div>
-            <div class="timeline-item">
-              <h4>June 2025</h4>
-              <p>Launch of Website</p>
-            </div>
-            <div class="timeline-item">
-              <h4>July 2025</h4>
-              <p>First Research Paper</p>
-            </div>
-          </div>
-        </div>
+        <h2>About Nova-Labs Space</h2>
+        <p>Nova-Labs Space, or NLS for short, is a small independent research project, focusing on the fields of astronomy and astrophysics. Founded 28 May, 2025. Started off as a small project on the backburner, however small we may be, we have big goals, which can only be supported by YOU.</p>
       </section>
-
       <section id="contact">
-        <div class="section-content">
-          <h2>Contact</h2>
-          <p>Care to reach out? Email us at: socials.novalabs@gmail.com</p>
-          <p>Follow us on social media, see our latest projects in video form: TikTok @ novalabs.tiktok </p>
-        </div>
-        <div class="section-visual">
-          <form class="contact-form" onsubmit="return false;">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" placeholder="Your name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" placeholder="Your email">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" rows="4" placeholder="Your message"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
-        </div>
+        <h2>Contact</h2>
+        <p>Care to reach out? Email us at: socials.novalabs@gmail.com</p>
+        <p>Follow us on social media, see our latest projects in video form: TikTok @ novalabs.tiktok </p>
       </section>
     </main>
-
     <footer>
       <div class="social-icons" aria-label="Social Media Links">
         <a href="mailto:socials.novalabs@gmail.com" aria-label="Email NovaLabs">
@@ -703,18 +480,21 @@
     const themeToggle = document.querySelector('.dark-toggle');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
+    // Function to set theme
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       updateToggleButton();
     }
 
+    // Function to update toggle button text
     function updateToggleButton() {
       const currentTheme = localStorage.getItem('theme') || 
         (prefersDarkScheme.matches ? 'dark' : 'light');
       themeToggle.textContent = `Switch to ${currentTheme === 'dark' ? 'Light' : 'Dark'} Mode`;
     }
 
+    // Initialize theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setTheme(savedTheme);
@@ -722,72 +502,18 @@
       setTheme('dark');
     }
 
+    // Theme toggle event listener
     themeToggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       setTheme(currentTheme === 'dark' ? 'light' : 'dark');
     });
 
+    // Listen for system theme changes
     prefersDarkScheme.addEventListener('change', (e) => {
       if (!localStorage.getItem('theme')) {
         setTheme(e.matches ? 'dark' : 'light');
       }
     });
-
-    // Space background animation
-    const canvas = document.getElementById('spaceCanvas');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = canvas.parentElement.offsetWidth;
-      canvas.height = canvas.parentElement.offsetHeight;
-    }
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    class Star {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.z = Math.random() * 2;
-        this.size = Math.random() * 2;
-      }
-
-      update() {
-        this.y += this.z;
-        if (this.y > canvas.height) {
-          this.reset();
-          this.y = 0;
-        }
-      }
-
-      draw() {
-        ctx.fillStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    const stars = Array(100).fill().map(() => new Star());
-
-    function animate() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      stars.forEach(star => {
-        star.update();
-        star.draw();
-      });
-      
-      requestAnimationFrame(animate);
-    }
-
-    animate();
   </script>
 </body>
 </html>
