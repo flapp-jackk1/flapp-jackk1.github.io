@@ -352,19 +352,24 @@
       background-color: var(--accent-color);
       color: white;
       border: none;
-      padding: 0.75em 1.5em;
-      margin: 1em;
-      border-radius: 4px;
+      padding: 0.75em 1.2em;
+      margin: 0.5em 0;
+      border-radius: 6px;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 600;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-size: 0.9em;
     }
 
     .refresh-button:hover {
       transform: scale(1.05);
+      background-color: var(--accent-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     .refresh-button:active {
@@ -372,9 +377,10 @@
     }
 
     .refresh-button svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       transition: transform 0.5s ease;
+      stroke-width: 2.5;
     }
 
     .refresh-button:hover svg {
@@ -640,8 +646,30 @@
         transform: scaleY(1);
       }
 
-      nav .dark-toggle {
-        margin-top: 1em;
+      nav {
+        right: 20px;  /* Pull away from edge */
+        border-radius: 12px;  /* Rounded corners */
+        border: 2px solid var(--accent-color);
+        background-color: var(--bg-secondary);
+        padding: 1.2em;
+        width: 280px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      nav a {
+        border-radius: 8px;
+        margin: 0.3em 0;
+        font-size: 1em;
+      }
+
+      nav .button-container {
+        margin-top: 0.8em;
+      }
+
+      .dark-toggle {
+        border-radius: 6px;
+        margin: 0.5em 0;
+        font-size: 0.9em;
         width: 100%;
       }
     }
