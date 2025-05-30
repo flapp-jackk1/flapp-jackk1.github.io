@@ -515,166 +515,8 @@
 
     @media screen and (max-width: 767px) {
       nav {
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        border-left: none;
-        padding-top: 100px;
-      }
-
-      nav.show {
-        transform: translateX(0);
-      }
-
-      nav a {
-        width: 80%;
-      }
-
-      nav a:hover {
-        transform: translateX(0);
-      }
-
-      .menu-toggle.open + nav {
-        transform: translateX(0);
-      }
-
-      .mobile-follower-section {
-        display: none;
-      }
-
-      .follower-bar-container {
-        margin: 0;
-        padding: 1.5em;
-        border-radius: 6px;
-      }
-
-      .follower-bar-wrapper {
-        height: 40px;
-        margin-top: 80px;
-        width: 100%;
-      }
-
-      .follower-bar {
-        height: 100%;
-        width: 0%;
-        bottom: 0;
-        left: 0;
-        transition: width 1s ease-in-out;
-      }
-
-      .follower-text-container {
-        position: absolute;
-        width: 100%;
-        right: auto;
-        left: 0;
-        top: 0;
-        transform: none;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-bottom: 1em;
-        padding-right: 0;
-      }
-
-      .follower-title {
-        margin: 0;
-        font-size: 1.5em;
-        color: var(--text-primary);
-      }
-
-      .follower-count {
-        font-size: 2em;
-        margin: 0.5em 0;
-        color: var(--text-primary);
-      }
-
-      .follower-max {
-        margin: 0;
-        font-size: 1.2em;
-        color: var(--text-primary);
-      }
-
-      section + section {
-        margin-top: 2em;
-      }
-
-      .mobile-follower-section + #home {
-        margin-top: 2em;
-      }
-
-      main {
-        padding: 8em 1em 2em 1em;
-      }
-
-      section {
-        width: 100%;
-        max-width: none;
-      }
-
-      .utc-display {
-        display: none;
-      }
-
-      header {
-        padding: 1em;
-        grid-template-columns: 120px 1fr 50px;
-      }
-
-      .utc-display {
-        min-width: auto;
-      }
-
-      .utc-time {
-        font-size: 1em;
-      }
-
-      .utc-date {
-        font-size: 0.7em;
-      }
-
-      header img {
-        height: 60px;
-      }
-
-      .intro-logo-container {
-        width: 280px;
-        height: 280px;
-      }
-
-      .intro-logo {
-        width: 240px;
-      }
-
-      .circle-1 {
-        width: 300px;
-        height: 300px;
-      }
-
-      .circle-2 {
-        width: 360px;
-        height: 360px;
-      }
-
-      .circle-3 {
-        width: 420px;
-        height: 420px;
-      }
-
-      .loading-container {
-        width: 250px;
-      }
-
-      nav .refresh-button {
-        font-size: 0.85em;
-        padding: 0.6em 1em;
-        width: auto;
-      }
-
-      nav .refresh-button img {
-        width: 16px;
-        height: 16px;
+        width: 85%;  /* Make menu narrower on mobile */
+        right: 7.5%;  /* Center it */
       }
     }
 
@@ -894,21 +736,11 @@
         <div class="button-container">
           <button class="dark-toggle">Switch to Dark Mode</button>
           <button class="refresh-button" onclick="refreshPage()">
-            <img src="refresh.png" alt="Refresh" />
-            Refresh Page
+            Refresh
           </button>
         </div>
       </nav>
     </header>
-
-    <!-- Add Side Navigation for Desktop -->
-    <div class="side-nav">
-      <a href="#home">Home</a>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
 
     <main>
       <section id="home">
