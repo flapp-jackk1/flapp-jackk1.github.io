@@ -17,7 +17,7 @@
       --header-bg: rgba(255, 255, 255, 1);
       --shadow-color: rgba(0, 0, 0, 0.1);
       --follower-bar-bg: #eee;
-      --follower-bar-fill: #00f2ea;
+      --follower-bar-fill: #002d62;
       --follower-text: #000000;
     }
 
@@ -31,7 +31,7 @@
       --header-bg: rgba(30, 30, 30, 1);
       --shadow-color: rgba(255, 255, 255, 0.05);
       --follower-bar-bg: #333;
-      --follower-bar-fill: #00f2ea;
+      --follower-bar-fill: #215ec3;
       --follower-text: #ffffff;
     }
 
@@ -385,61 +385,115 @@
     /* TikTok Follower Bar Styles */
     .follower-bar-container {
       position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 300px;
       background: var(--follower-bar-bg);
       transition: all 0.3s ease;
       z-index: 99;
-      border-radius: 4px;
-      overflow: hidden;
+      border-radius: 20px;
+      margin-right: 20px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    @media screen and (min-width: 768px) {
-      .follower-bar-container {
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%) rotate(-90deg);
-        transform-origin: right;
-        width: 300px;
-        height: 40px;
-        margin-right: 20px;
-      }
-    }
-
-    @media screen and (max-width: 767px) {
-      .follower-bar-container {
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 40px;
-        position: fixed;
-      }
+    .follower-bar-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .follower-bar {
-      height: 100%;
-      width: 0%;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
       background: var(--follower-bar-fill);
-      transition: width 1s ease-in-out;
-      position: relative;
+      transition: height 1s ease-in-out;
+      border-radius: 10px;
     }
 
     .follower-text {
-      position: absolute;
-      width: 100%;
-      text-align: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
       color: var(--follower-text);
       font-weight: bold;
-      line-height: 40px;
-      z-index: 2;
       white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      transform-origin: center;
+      z-index: 2;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       font-size: 0.9em;
       letter-spacing: 0.5px;
     }
 
-    @media screen and (min-width: 768px) {
+    .follower-title {
+      top: -5px;
+    }
+
+    .follower-count {
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .follower-max {
+      bottom: -5px;
+    }
+
+    @media screen and (max-width: 767px) {
+      .follower-bar-container {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        width: calc(100% - 40px);
+        height: 40px;
+        transform: none;
+        border-radius: 20px;
+      }
+
+      .follower-bar-wrapper {
+        flex-direction: row;
+      }
+
+      .follower-bar {
+        height: 100%;
+        width: 0%;
+        bottom: 0;
+        left: 0;
+        transition: width 1s ease-in-out;
+      }
+
       .follower-text {
-        transform: rotate(90deg);
+        writing-mode: horizontal-tb;
+        transform: none;
+      }
+
+      .follower-title {
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .follower-count {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .follower-max {
+        right: 10px;
+        left: auto;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
   </style>
@@ -459,8 +513,14 @@
   <div class="content-wrapper">
     <!-- TikTok Follower Bar -->
     <div class="follower-bar-container">
-      <div class="follower-text">TikTok Followers: <span id="follower-count">0</span> / 100</div>
-      <div class="follower-bar" id="follower-bar"></div>
+      <div class="follower-bar-wrapper">
+        <div class="follower-bar" id="follower-bar"></div>
+        <div class="follower-text">
+          <div class="follower-title">TikTok Followers:</div>
+          <div class="follower-count" id="follower-count">0</div>
+          <div class="follower-max">/ 100</div>
+        </div>
+      </div>
     </div>
 
     <header>
@@ -596,12 +656,25 @@
       const followerBar = document.getElementById('follower-bar');
       const followerCount = document.getElementById('follower-count');
       
-      followerBar.style.width = `${percentage}%`;
-      followerCount.textContent = currentFollowers;
+      if (window.innerWidth <= 767) {
+        followerBar.style.width = `${percentage}%`;
+        followerBar.style.height = '100%';
+      } else {
+        followerBar.style.height = `${percentage}%`;
+        followerBar.style.width = '100%';
+      }
+      
+      followerCount.textContent = `${currentFollowers} (${Math.round(percentage)}%)`;
     }
 
     // Initialize follower count (replace with your actual count)
     updateFollowerBar(45);
+
+    // Update the bar orientation on window resize
+    window.addEventListener('resize', () => {
+      const currentCount = parseInt(document.getElementById('follower-count').textContent);
+      updateFollowerBar(currentCount);
+    });
 
     // Optional: Uncomment and modify this code if you want to fetch real-time data
     /*
