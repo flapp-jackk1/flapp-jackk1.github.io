@@ -471,7 +471,8 @@
 
       .follower-bar-wrapper {
         height: 40px;
-        margin-top: 50px;
+        margin-top: 60px;
+        width: 100%;
       }
 
       .follower-bar {
@@ -483,28 +484,41 @@
       }
 
       .follower-text-container {
-        position: relative;
+        position: absolute;
         width: 100%;
-        right: 0;
+        right: auto;
+        left: 0;
+        top: 0;
+        transform: none;
         flex-direction: column;
         align-items: center;
         text-align: center;
         margin-bottom: 1em;
+        padding-right: 0;
+      }
+
+      .mobile-follower-section {
+        width: 100%;
+        order: 1;
+        margin: 1em 0;
       }
 
       .follower-title {
         margin: 0;
         font-size: 1.5em;
+        color: var(--text-primary);
       }
 
       .follower-count {
         font-size: 2em;
         margin: 0.5em 0;
+        color: var(--text-primary);
       }
 
       .follower-max {
         margin: 0;
         font-size: 1.2em;
+        color: var(--text-primary);
       }
     }
 
