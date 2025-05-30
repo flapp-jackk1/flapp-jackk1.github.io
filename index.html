@@ -385,10 +385,10 @@
     /* TikTok Follower Bar Styles */
     .follower-bar-container {
       position: fixed;
-      top: calc(50% + 200px);
+      top: calc(50% + 50px);
       transform: translateY(-50%);
       width: 60px;
-      height: 70vh;
+      height: 50vh;
       background: var(--follower-bar-bg);
       transition: all 0.3s ease;
       z-index: 99;
@@ -429,7 +429,7 @@
       flex-direction: column;
       align-items: flex-end;
       pointer-events: none;
-      transform: translate(-100%, -100px);
+      transform: translate(-100%, -50px);
       padding-right: 20px;
     }
 
@@ -697,17 +697,23 @@
       }
     });
 
-    // Update the JavaScript to handle both mobile and desktop elements
+    // ===== FOLLOWER COUNT SETTINGS =====
+    // Just change this number to update everything!
+    const CURRENT_FOLLOWERS = 45;  // <-- CHANGE THIS NUMBER ONLY
+    const FOLLOWER_GOAL = 100;
+    // ==================================
+
     function updateFollowerBar(currentFollowers) {
-      const maxFollowers = 100;
-      const percentage = Math.min((currentFollowers / maxFollowers) * 100, 100);
+      const percentage = Math.min((currentFollowers / FOLLOWER_GOAL) * 100, 100);
+      const displayPercentage = Math.round(percentage);
+      const displayText = `${currentFollowers} (${displayPercentage}%)`;
       
       // Update desktop version
       const desktopBar = document.getElementById('follower-bar-desktop');
       const desktopCount = document.getElementById('follower-count-desktop');
       if (desktopBar && desktopCount) {
         desktopBar.style.height = `${percentage}%`;
-        desktopCount.textContent = `${currentFollowers} (${Math.round(percentage)}%)`;
+        desktopCount.textContent = displayText;
       }
 
       // Update mobile version
@@ -715,35 +721,12 @@
       const mobileCount = document.getElementById('follower-count-mobile');
       if (mobileBar && mobileCount) {
         mobileBar.style.width = `${percentage}%`;
-        mobileCount.textContent = `${currentFollowers} (${Math.round(percentage)}%)`;
+        mobileCount.textContent = displayText;
       }
     }
 
-    // Initialize follower count (replace with your actual count)
-    updateFollowerBar(45);
-
-    // Update the bar orientation on window resize
-    window.addEventListener('resize', () => {
-      const currentCount = parseInt(document.getElementById('follower-count').textContent);
-      updateFollowerBar(currentCount);
-    });
-
-    // Optional: Uncomment and modify this code if you want to fetch real-time data
-    /*
-    async function fetchTikTokFollowers() {
-      try {
-        const response = await fetch('YOUR_API_ENDPOINT');
-        const data = await response.json();
-        updateFollowerBar(data.follower_count);
-      } catch (error) {
-        console.error('Error fetching TikTok followers:', error);
-      }
-    }
-
-    // Update followers every 5 minutes
-    setInterval(fetchTikTokFollowers, 5 * 60 * 1000);
-    fetchTikTokFollowers();
-    */
+    // Initialize with current follower count
+    updateFollowerBar(CURRENT_FOLLOWERS);
   </script>
 </body>
 </html>
