@@ -227,7 +227,7 @@
       align-items: flex-start;
       font-family: 'Poppins', monospace;
       min-width: 140px;
-      transform: translateY(-25%);  /* Move up by half its height */
+      transform: translateY(-25%);
     }
 
     .utc-time {
@@ -245,7 +245,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transform: translateY(-25%);  /* Move up by half its height */
+      transform: translateY(-25%);
     }
 
     header img {
@@ -265,7 +265,7 @@
       gap: 6px;
       position: absolute;
       right: 2em;
-      top: calc(50% - 18px);  /* Move up by half its height (36px/2 = 18px) */
+      top: 25%;
       transform: translateY(-50%);
       z-index: 1100;
       width: 36px;
@@ -639,18 +639,15 @@
 
       .utc-display {
         min-width: auto;
+        transform: translateY(-25%);
       }
 
-      .utc-time {
-        font-size: 1em;
+      .header-center {
+        transform: translateY(-25%);
       }
 
-      .utc-date {
-        font-size: 0.7em;
-      }
-
-      header img {
-        height: 60px;
+      .menu-toggle {
+        top: 25%;
       }
 
       .intro-logo-container {
