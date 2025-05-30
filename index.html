@@ -68,6 +68,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-top: -10%;  /* Move up by 10% of viewport height */
     }
 
     .intro-logo {
@@ -628,10 +629,10 @@
       }
     }
 
-    /* Add loading bar styles */
+    /* Loading bar styles */
     .loading-container {
       position: absolute;
-      bottom: 15%;
+      bottom: 10%;
       left: 50%;
       transform: translateX(-50%);
       width: 300px;
@@ -641,11 +642,12 @@
 
     .loading-bar {
       width: 100%;
-      height: 4px;
-      background: rgba(var(--circle-color), 0.2);
-      border-radius: 2px;
+      height: 6px;  /* Made slightly taller */
+      background: rgba(128, 128, 128, 0.2);  /* Light gray background */
+      border-radius: 3px;
       overflow: hidden;
       position: relative;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);  /* Inner shadow for depth */
     }
 
     .loading-progress {
@@ -656,6 +658,12 @@
       background: var(--circle-color);
       width: 0%;
       transition: width 0.8s ease-in-out;
+      border-radius: 3px;
+      box-shadow: 0 0 10px var(--circle-color);  /* Glow effect */
+    }
+
+    [data-theme="dark"] .loading-bar {
+      background: rgba(255, 255, 255, 0.1);  /* Lighter gray for dark mode */
     }
 
     .loading-text {
