@@ -376,14 +376,14 @@
       transform: scale(0.95);
     }
 
-    .refresh-button svg {
+    .refresh-button img {
       width: 14px;
       height: 14px;
       transition: transform 0.5s ease;
-      stroke-width: 2.5;
+      filter: brightness(0) invert(1);  /* Make the icon white */
     }
 
-    .refresh-button:hover svg {
+    .refresh-button:hover img {
       transform: rotate(180deg);
     }
 
@@ -638,6 +638,44 @@
       header img {
         height: 60px;
       }
+
+      .intro-logo-container {
+        width: 280px;
+        height: 280px;
+      }
+
+      .intro-logo {
+        width: 240px;
+      }
+
+      .circle-1 {
+        width: 300px;
+        height: 300px;
+      }
+
+      .circle-2 {
+        width: 360px;
+        height: 360px;
+      }
+
+      .circle-3 {
+        width: 420px;
+        height: 420px;
+      }
+
+      .loading-container {
+        width: 250px;
+      }
+
+      nav .refresh-button {
+        font-size: 1em;
+        padding: 0.8em 1em;
+      }
+
+      nav .refresh-button img {
+        width: 16px;
+        height: 16px;
+      }
     }
 
     /* Desktop Styles */
@@ -672,6 +710,14 @@
         margin: 0.5em 0;
         font-size: 0.9em;
         width: 100%;
+      }
+
+      .side-nav {
+        display: block;
+      }
+
+      nav a[href^="#"] {
+        display: none;
       }
     }
 
@@ -755,6 +801,43 @@
         transform: translate(-50%, 0);
       }
     }
+
+    /* Desktop Side Navigation */
+    .side-nav {
+      display: none;
+      position: fixed;
+      left: 20px;
+      top: 110px;
+      background-color: var(--bg-secondary);
+      border-radius: 12px;
+      border: 2px solid var(--accent-color);
+      padding: 1.2em;
+      width: 280px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1050;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 1em;
+      color: inherit;
+      text-align: center;
+      width: 100%;
+      margin: 0.3em 0;
+      background: var(--bg-secondary);
+      box-shadow: 0 0 8px var(--shadow-color);
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+
+    .side-nav a:hover {
+      transform: translateX(5px);
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -810,14 +893,21 @@
         <div class="button-container">
           <button class="dark-toggle">Switch to Dark Mode</button>
           <button class="refresh-button" onclick="refreshPage()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c-4.97 0-9-4.03-9-9m9 9a9 9 0 009-9m-9 0a9 9 0 00-9 9m9-9a9 9 0 019 9"></path>
-            </svg>
+            <img src="refresh.png" alt="Refresh" />
             Refresh Page
           </button>
         </div>
       </nav>
     </header>
+
+    <!-- Add Side Navigation for Desktop -->
+    <div class="side-nav">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
 
     <main>
       <section id="home">
