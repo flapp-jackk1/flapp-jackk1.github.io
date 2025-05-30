@@ -191,9 +191,9 @@
       width: 100%;
       background: var(--header-bg);
       padding: 1em 2em;
-      display: flex;
+      display: grid;
+      grid-template-columns: 200px 1fr 200px;
       align-items: center;
-      justify-content: space-between;
       border-bottom: 2px solid var(--accent-color);
       user-select: none;
       height: 100px;
@@ -204,17 +204,17 @@
       flex-direction: column;
       align-items: flex-start;
       font-family: 'Poppins', monospace;
-      min-width: 200px;
+      min-width: 140px;
     }
 
     .utc-time {
-      font-size: 1.5em;
+      font-size: 1.2em;
       font-weight: 600;
       color: var(--accent-color);
     }
 
     .utc-date {
-      font-size: 0.9em;
+      font-size: 0.8em;
       color: var(--text-secondary);
     }
 
@@ -222,12 +222,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-grow: 1;
     }
 
     header img {
       height: 72px;
       flex-shrink: 0;
+    }
+
+    .menu-toggle-container {
+      display: flex;
+      justify-content: flex-end;
     }
 
     .menu-toggle {
@@ -549,6 +553,27 @@
       .utc-display {
         display: none;
       }
+
+      header {
+        padding: 1em;
+        grid-template-columns: 120px 1fr 50px;
+      }
+
+      .utc-display {
+        min-width: auto;
+      }
+
+      .utc-time {
+        font-size: 1em;
+      }
+
+      .utc-date {
+        font-size: 0.7em;
+      }
+
+      header img {
+        height: 60px;
+      }
     }
 
     /* Desktop Styles */
@@ -619,10 +644,12 @@
       <div class="header-center">
         <img src="logo.png" alt="NovaLabs Logo" class="logo-image" />
       </div>
-      <div class="menu-toggle" onclick="toggleMenu(this)">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="menu-toggle-container">
+        <div class="menu-toggle" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
       <nav>
         <a href="#home">Home</a>
