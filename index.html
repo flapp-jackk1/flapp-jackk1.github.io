@@ -627,6 +627,56 @@
         order: 1;
       }
     }
+
+    /* Add loading bar styles */
+    .loading-container {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      opacity: 0;
+      animation: fadeInLoading 0.5s ease-in-out forwards;
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(var(--circle-color), 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loading-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: var(--circle-color);
+      width: 0%;
+      transition: width 0.8s ease-in-out;
+    }
+
+    .loading-text {
+      text-align: center;
+      color: var(--text-primary);
+      font-size: 0.9em;
+      margin-top: 10px;
+      font-family: 'Poppins', monospace;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeInLoading {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -637,6 +687,12 @@
       <div class="intro-circle circle-2"></div>
       <div class="intro-circle circle-3"></div>
       <img src="logo.png" alt="NovaLabs Logo" class="intro-logo">
+    </div>
+    <div class="loading-container">
+      <div class="loading-bar">
+        <div class="loading-progress" id="loadingProgress"></div>
+      </div>
+      <div class="loading-text" id="loadingText">Initializing...</div>
     </div>
   </div>
 
@@ -836,6 +892,52 @@
   // Update immediately and then every second
   updateUTCTime();
   setInterval(updateUTCTime, 1000);
+
+  function updateLoadingBar() {
+    const progress = document.getElementById('loadingProgress');
+    const text = document.getElementById('loadingText');
+    const loadingTexts = [
+      'Initializing...',
+      'Loading assets...',
+      'Connecting to space...',
+      'Calibrating systems...',
+      'Preparing launch...'
+    ];
+    let currentStep = 0;
+    let currentProgress = 0;
+
+    function getRandomProgress() {
+      // Generate a random increment between 15% and 35%
+      return Math.random() * 20 + 15;
+    }
+
+    function updateProgress() {
+      if (currentStep < 4) {
+        const targetProgress = Math.min(currentProgress + getRandomProgress(), (currentStep + 1) * 25);
+        progress.style.width = `${targetProgress}%`;
+        
+        if (targetProgress >= (currentStep + 1) * 25) {
+          currentStep++;
+          text.textContent = loadingTexts[currentStep];
+          currentProgress = targetProgress;
+          setTimeout(updateProgress, Math.random() * 500 + 500);
+        } else {
+          currentProgress = targetProgress;
+          setTimeout(updateProgress, Math.random() * 300 + 200);
+        }
+      } else {
+        // Final step to 100%
+        progress.style.width = '100%';
+        text.textContent = 'Ready!';
+      }
+    }
+
+    // Start the progress updates
+    setTimeout(updateProgress, 500);
+  }
+
+  // Call this function when the page loads
+  window.addEventListener('load', updateLoadingBar);
 </script>
 </body>
 </html>
