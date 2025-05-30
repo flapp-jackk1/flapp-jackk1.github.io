@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NovaLabs • Space</title>
   <meta name="description" content="Nova-Labs Space (NLS) is an independent research organization exploring deep space technology, astronomy, and exoplanet discovery. Join the future of exploration.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Root & Theme Variables */
     :root {
@@ -33,6 +34,11 @@
       --follower-bar-bg: #333;
       --follower-bar-fill: #215ec3;
       --follower-text: #ffffff;
+    }
+
+    /* Apply Poppins to all elements */
+    * {
+      font-family: 'Poppins', sans-serif;
     }
 
     /* Intro Animation Styles */
@@ -387,13 +393,13 @@
       position: fixed;
       top: calc(50% - 100px);
       transform: translateY(-50%);
-      width: 60px;
-      height: 40vh;
+      width: 80px;
+      height: 60vh;
       background: var(--follower-bar-bg);
       transition: all 0.3s ease;
       z-index: 99;
-      border-radius: 30px;
-      padding: 15px;
+      border-radius: 40px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -455,23 +461,21 @@
     }
 
     @media screen and (max-width: 767px) {
-      .follower-bar-container {
-        position: static;
+      .mobile-follower-section {
         width: 100%;
-        height: auto;
-        transform: none;
-        left: auto;
-        right: auto;
-        margin: 2em 0;
-        padding: 2em 1.5em;
+        order: 1;
+        margin: 0;
+      }
+
+      .follower-bar-container {
+        margin: 0;
+        padding: 1.5em;
         border-radius: 6px;
-        background: var(--bg-secondary);
-        box-shadow: 0 0 8px var(--shadow-color);
       }
 
       .follower-bar-wrapper {
         height: 40px;
-        margin-top: 60px;
+        margin-top: 80px;
         width: 100%;
       }
 
@@ -497,12 +501,6 @@
         padding-right: 0;
       }
 
-      .mobile-follower-section {
-        width: 100%;
-        order: 1;
-        margin: 1em 0;
-      }
-
       .follower-title {
         margin: 0;
         font-size: 1.5em;
@@ -519,6 +517,14 @@
         margin: 0;
         font-size: 1.2em;
         color: var(--text-primary);
+      }
+
+      section + section {
+        margin-top: 2em;
+      }
+
+      .mobile-follower-section + #home {
+        margin-top: 2em;
       }
     }
 
