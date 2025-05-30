@@ -389,7 +389,7 @@
       top: 50%;
       transform: translateY(-50%);
       width: 60px;
-      height: 80vh;
+      height: 70vh;
       background: var(--follower-bar-bg);
       transition: all 0.3s ease;
       z-index: 99;
@@ -399,6 +399,7 @@
       flex-direction: column;
       align-items: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      left: 75%;
     }
 
     .follower-bar-wrapper {
@@ -431,7 +432,6 @@
     }
 
     .follower-title {
-      top: 20px;
       font-size: 1.2em;
       font-weight: bold;
       color: var(--follower-text);
@@ -447,7 +447,6 @@
     }
 
     .follower-max {
-      bottom: 20px;
       font-size: 1.2em;
       color: var(--follower-text);
       opacity: 0.8;
@@ -455,18 +454,22 @@
 
     @media screen and (max-width: 767px) {
       .follower-bar-container {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
-        left: 20px;
-        width: calc(100% - 40px);
-        height: 50px;
+        position: static;
+        width: 100%;
+        height: auto;
         transform: none;
-        border-radius: 25px;
+        left: auto;
+        right: auto;
+        margin: 2em 0;
+        padding: 2em 1.5em;
+        border-radius: 6px;
+        background: var(--bg-secondary);
+        box-shadow: 0 0 8px var(--shadow-color);
       }
 
       .follower-bar-wrapper {
-        flex-direction: row;
+        height: 40px;
+        margin-top: 50px;
       }
 
       .follower-bar {
@@ -478,29 +481,52 @@
       }
 
       .follower-text-container {
-        position: absolute;
+        position: relative;
         width: 100%;
         right: 0;
-        top: -40px;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
-        padding: 0 10px;
+        text-align: center;
+        margin-bottom: 1em;
       }
 
       .follower-title {
         margin: 0;
-        font-size: 1em;
+        font-size: 1.5em;
       }
 
       .follower-count {
-        font-size: 1.2em;
-        margin: 0 10px;
+        font-size: 2em;
+        margin: 0.5em 0;
       }
 
       .follower-max {
         margin: 0;
-        font-size: 1em;
+        font-size: 1.2em;
+      }
+    }
+
+    /* Add these new styles after your existing styles */
+    .mobile-only {
+      display: none;
+    }
+
+    .desktop-only {
+      display: block;
+    }
+
+    @media screen and (max-width: 767px) {
+      .mobile-only {
+        display: block;
+      }
+
+      .desktop-only {
+        display: none;
+      }
+
+      .mobile-follower-section {
+        width: 100%;
+        order: 1;
       }
     }
   </style>
@@ -518,14 +544,28 @@
 
   <!-- Main Content -->
   <div class="content-wrapper">
-    <!-- TikTok Follower Bar -->
-    <div class="follower-bar-container">
+    <!-- TikTok Follower Progress (Mobile Only) -->
+    <section class="mobile-follower-section">
+      <div class="follower-bar-container mobile-only">
+        <div class="follower-text-container">
+          <div class="follower-title">TikTok Followers</div>
+          <div class="follower-count" id="follower-count-mobile">0 (0%)</div>
+          <div class="follower-max">Goal: 100</div>
+        </div>
+        <div class="follower-bar-wrapper">
+          <div class="follower-bar" id="follower-bar-mobile"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TikTok Follower Progress (Desktop Only) -->
+    <div class="follower-bar-container desktop-only">
       <div class="follower-bar-wrapper">
-        <div class="follower-bar" id="follower-bar"></div>
+        <div class="follower-bar" id="follower-bar-desktop"></div>
       </div>
       <div class="follower-text-container">
         <div class="follower-title">TikTok Followers</div>
-        <div class="follower-count" id="follower-count">0 (0%)</div>
+        <div class="follower-count" id="follower-count-desktop">0 (0%)</div>
         <div class="follower-max">Goal: 100</div>
       </div>
     </div>
@@ -655,23 +695,26 @@
       }
     });
 
-    // TikTok Follower Bar functionality
+    // Update the JavaScript to handle both mobile and desktop elements
     function updateFollowerBar(currentFollowers) {
       const maxFollowers = 100;
       const percentage = Math.min((currentFollowers / maxFollowers) * 100, 100);
       
-      const followerBar = document.getElementById('follower-bar');
-      const followerCount = document.getElementById('follower-count');
-      
-      if (window.innerWidth <= 767) {
-        followerBar.style.width = `${percentage}%`;
-        followerBar.style.height = '100%';
-      } else {
-        followerBar.style.height = `${percentage}%`;
-        followerBar.style.width = '100%';
+      // Update desktop version
+      const desktopBar = document.getElementById('follower-bar-desktop');
+      const desktopCount = document.getElementById('follower-count-desktop');
+      if (desktopBar && desktopCount) {
+        desktopBar.style.height = `${percentage}%`;
+        desktopCount.textContent = `${currentFollowers} (${Math.round(percentage)}%)`;
       }
-      
-      followerCount.textContent = `${currentFollowers} (${Math.round(percentage)}%)`;
+
+      // Update mobile version
+      const mobileBar = document.getElementById('follower-bar-mobile');
+      const mobileCount = document.getElementById('follower-count-mobile');
+      if (mobileBar && mobileCount) {
+        mobileBar.style.width = `${percentage}%`;
+        mobileCount.textContent = `${currentFollowers} (${Math.round(percentage)}%)`;
+      }
     }
 
     // Initialize follower count (replace with your actual count)
