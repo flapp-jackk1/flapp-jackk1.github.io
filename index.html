@@ -360,7 +360,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
       transition: all 0.3s ease;
       width: 100%;
       font-size: 0.9em;
@@ -670,6 +669,7 @@
       .refresh-button {
         padding: 0.5em 0.8em;
         font-size: 0.8em;
+        width: 100%;
       }
 
       .refresh-button img {
@@ -681,7 +681,7 @@
     /* Desktop Styles */
     @media screen and (min-width: 768px) {
       .menu-toggle {
-        top: 60%;
+        top: 65%;
       }
 
       nav {
@@ -847,7 +847,6 @@
         <div class="button-container">
           <button class="dark-toggle">Switch to Dark Mode</button>
           <button class="refresh-button" onclick="refreshPage()">
-            <img src="refresh.png" alt="Refresh" />
             Refresh Page
           </button>
         </div>
