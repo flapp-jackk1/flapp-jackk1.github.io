@@ -385,21 +385,20 @@
     /* TikTok Follower Bar Styles */
     .follower-bar-container {
       position: fixed;
-      right: 0;
+      right: 40px;
       top: 50%;
       transform: translateY(-50%);
-      width: 40px;
-      height: 300px;
+      width: 60px;
+      height: 80vh;
       background: var(--follower-bar-bg);
       transition: all 0.3s ease;
       z-index: 99;
-      border-radius: 20px;
-      margin-right: 20px;
-      padding: 10px;
+      border-radius: 30px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
 
     .follower-bar-wrapper {
@@ -418,35 +417,40 @@
       width: 100%;
       background: var(--follower-bar-fill);
       transition: height 1s ease-in-out;
-      border-radius: 10px;
+      border-radius: 15px;
     }
 
-    .follower-text {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      color: var(--follower-text);
-      font-weight: bold;
-      white-space: nowrap;
+    .follower-text-container {
       position: absolute;
-      left: 50%;
-      transform-origin: center;
-      z-index: 2;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      font-size: 0.9em;
-      letter-spacing: 0.5px;
+      width: 200px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      pointer-events: none;
     }
 
     .follower-title {
-      top: -5px;
+      top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: var(--follower-text);
+      margin-bottom: 10px;
+      white-space: nowrap;
     }
 
     .follower-count {
-      top: 50%;
-      transform: translateY(-50%) rotate(180deg);
+      font-size: 2em;
+      font-weight: bold;
+      color: var(--follower-text);
+      margin: 10px 0;
     }
 
     .follower-max {
-      bottom: -5px;
+      bottom: 20px;
+      font-size: 1.2em;
+      color: var(--follower-text);
+      opacity: 0.8;
     }
 
     @media screen and (max-width: 767px) {
@@ -456,9 +460,9 @@
         right: 20px;
         left: 20px;
         width: calc(100% - 40px);
-        height: 40px;
+        height: 50px;
         transform: none;
-        border-radius: 20px;
+        border-radius: 25px;
       }
 
       .follower-bar-wrapper {
@@ -473,27 +477,30 @@
         transition: width 1s ease-in-out;
       }
 
-      .follower-text {
-        writing-mode: horizontal-tb;
-        transform: none;
+      .follower-text-container {
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: -40px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
       }
 
       .follower-title {
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
+        margin: 0;
+        font-size: 1em;
       }
 
       .follower-count {
-        left: 50%;
-        transform: translateX(-50%);
+        font-size: 1.2em;
+        margin: 0 10px;
       }
 
       .follower-max {
-        right: 10px;
-        left: auto;
-        top: 50%;
-        transform: translateY(-50%);
+        margin: 0;
+        font-size: 1em;
       }
     }
   </style>
@@ -515,11 +522,11 @@
     <div class="follower-bar-container">
       <div class="follower-bar-wrapper">
         <div class="follower-bar" id="follower-bar"></div>
-        <div class="follower-text">
-          <div class="follower-title">TikTok Followers:</div>
-          <div class="follower-count" id="follower-count">0</div>
-          <div class="follower-max">/ 100</div>
-        </div>
+      </div>
+      <div class="follower-text-container">
+        <div class="follower-title">TikTok Followers</div>
+        <div class="follower-count" id="follower-count">0 (0%)</div>
+        <div class="follower-max">Goal: 100</div>
       </div>
     </div>
 
