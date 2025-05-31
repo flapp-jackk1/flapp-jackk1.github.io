@@ -1120,7 +1120,7 @@
     // Intersection Observer for section animations
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: '-50px',
       threshold: 0.1
     };
 
@@ -1128,12 +1128,14 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('section-visible');
-          observer.unobserve(entry.target);
+        } else {
+          // Remove the class when section is out of view
+          entry.target.classList.remove('section-visible');
         }
       });
     }, observerOptions);
 
-    // Observe all sections
+    // Observe all sections and keep observing them
     document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
@@ -1303,6 +1305,33 @@
         window.location.reload();
       }, 300);
     }
+
+    // Update the animation styles to be more dramatic
+    const updateSectionStyles = () => {
+      const style = document.createElement('style');
+      style.textContent = `
+        section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.section-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          section {
+            transition: opacity 0.6s ease;
+            transform: none;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    };
+
+    updateSectionStyles();
   </script>
 </body>
 </html>
