@@ -910,6 +910,73 @@
       z-index: -1;
       opacity: 0.3;
     }
+
+    /* Add contact form styles */
+    .contact-form {
+      width: 100%;
+      max-width: 600px;
+      margin: 2em auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5em;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8em;
+      border: 2px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 5px rgba(0, 45, 98, 0.3);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 1em 2em;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 2em auto 0;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 45, 98, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(1px);
+    }
   </style>
 </head>
 <body>
@@ -1043,6 +1110,25 @@
         <h2>Get in Touch</h2>
         <p>We'd love to hear from you! Feel free to email us at socials.novalabs@gmail.com with any questions, ideas, or feedback.</p>
         <p>Don't forget to follow us on social media to stay updated and see our latest projects come to life in video form. Find us on TikTok at @novalabs.tiktok.</p>
+        
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
       </section>
     </main>
 
