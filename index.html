@@ -1111,7 +1111,7 @@
         <p>We'd love to hear from you! Feel free to email us at socials.novalabs@gmail.com with any questions, ideas, or feedback.</p>
         <p>Don't forget to follow us on social media to stay updated and see our latest projects come to life in video form. Find us on TikTok at @novalabs.tiktok.</p>
         
-        <form class="contact-form" action="#" method="POST">
+        <form class="contact-form" id="contactForm" onsubmit="return handleFormSubmit(event)">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your name">
@@ -1423,6 +1423,24 @@
     };
 
     updateSectionStyles();
+
+    // Add this new function for form handling
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      const mailtoLink = `mailto:socials.novalabs@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      
+      window.location.href = mailtoLink;
+      
+      // Clear the form
+      document.getElementById('contactForm').reset();
+      
+      return false;
+    }
   </script>
 </body>
 </html>
