@@ -226,14 +226,24 @@
     .utc-display {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       font-family: 'Poppins', monospace;
       min-width: 140px;
-      transform: translateY(0);
+      background: var(--bg-secondary);
+      padding: 0.8em;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .utc-display:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 4px 12px var(--shadow-color);
     }
 
     .utc-time {
-      font-size: 1.2em;
+      font-size: 1.1em;
       font-weight: 600;
       color: var(--accent-color);
     }
@@ -241,6 +251,7 @@
     .utc-date {
       font-size: 0.8em;
       color: var(--text-secondary);
+      margin-top: 0.2em;
     }
 
     .header-center {
@@ -695,7 +706,20 @@
       }
 
       .utc-display {
-        display: none;
+        position: absolute;
+        top: 110px;  /* Position below header */
+        right: 20px;
+        z-index: 1000;
+        background: var(--bg-secondary);
+        padding: 0.6em;
+      }
+
+      .utc-time {
+        font-size: 0.9em;
+      }
+
+      .utc-date {
+        font-size: 0.7em;
       }
 
       .intro-logo-container {
