@@ -613,7 +613,7 @@
       }
 
       .header-center {
-        transform: translateX(-5px) translateY(5px);  /* Adjusted for mobile */
+        transform: translateX(-8px) translateY(-2px);  /* Adjusted up and more left */
       }
 
       .menu-toggle {
@@ -1101,6 +1101,111 @@
         padding-top: 0.8em;
       }
     }
+
+    .reading-time {
+      display: block;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.8em;
+      margin-top: -0.5em;
+      margin-bottom: 1.5em;
+      opacity: 0.8;
+    }
+
+    /* Back to top button styles */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(100px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Share buttons styles */
+    .apod-share {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 1em 0;
+    }
+
+    .share-button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: transform 0.2s ease;
+    }
+
+    .share-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Glossary styles */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5em;
+      margin-top: 1.5em;
+    }
+
+    .glossary-item {
+      background: var(--bg-secondary);
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      transition: transform 0.2s ease;
+    }
+
+    .glossary-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .glossary-term {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 0.5em;
+      font-size: 1.1em;
+    }
+
+    .glossary-definition {
+      font-size: 0.9em;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+
+    @media screen and (max-width: 767px) {
+      .glossary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1155,6 +1260,7 @@
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#team">Team</a>
+        <a href="#glossary">Glossary</a>
         <a href="#contact">Contact</a>
         <div class="button-container">
           <button class="dark-toggle">Switch to Dark Mode</button>
@@ -1168,6 +1274,7 @@
     <main>
       <section id="home">
         <h2>Welcome to Nova-Labs Space | NLS</h2>
+        <span class="reading-time">2 min read</span>
         <p>Welcome to our community! We are excited to have you join us on this incredible journey. As we continue to grow and evolve, you can expect many exciting updates and improvements to this site in the near future. Our commitment to innovation means there are big changes coming your way, designed to enhance your experience and bring even more value to everyone involved.</p>
 
         <p>Your support truly means the world to us. Every follow, share, and message encourages us to keep pushing forward and investing our energy into making this community better. Knowing that we have a passionate and engaged group of people behind us motivates us to work harder and dream bigger.</p>
@@ -1182,6 +1289,7 @@
 
       <section id="daily-space" class="apod-section">
         <h2>Astronomy Picture of the Day</h2>
+        <span class="reading-time">1 min read</span>
         <div class="apod-container">
           <div class="apod-image-container">
             <div class="apod-loading">Loading today's cosmic view...</div>
@@ -1191,6 +1299,11 @@
             <h3 class="apod-title" id="apod-title"></h3>
             <div class="apod-date" id="apod-date"></div>
             <p class="apod-description" id="apod-explanation"></p>
+            <div class="apod-share">
+              <button class="share-button" onclick="shareAPOD('twitter')">Share on Twitter</button>
+              <button class="share-button" onclick="shareAPOD('facebook')">Share on Facebook</button>
+              <button class="share-button" onclick="copyAPODLink()">Copy Link</button>
+            </div>
             <p class="apod-credits" id="apod-credits"></p>
             <div class="nasa-attribution">
               Image and content provided by NASA's <a href="https://apod.nasa.gov/apod/" target="_blank" rel="noopener">Astronomy Picture of the Day</a><br>
@@ -1203,6 +1316,7 @@
 
       <section id="research">
         <h2>Research</h2>
+        <span class="reading-time">4 min read</span>
         <h3 style="color: var(--accent-color); text-align: center; font-size: 1.4em; margin: 1em 0;">'Mathematical Modelling and Data Analysis Techniques for Exoplanet Detection Using the Transit Method'</h3>
         <p>Upcoming research paper evaluating the use of the transit method in discovering exoplanets, more info on contents and expected launch date to be available here and our socials. Stay tuned for more.</p>
 
@@ -1232,6 +1346,7 @@
 
       <section id="projects">
         <h2>Projects</h2>
+        <span class="reading-time">1 min read</span>
         <p>One of our key projects right now is the ongoing development of this website. We are continuously working to improve the design, functionality, and content to create the best possible experience for our community.</p>
 
         <p>Alongside that, we have an exciting milestone in sight, reaching 1,000 followers on TikTok! Join us there and become part of a vibrant, innovative community passionate about space, technology, and exploration. Your support helps fuel our mission and keeps the momentum going.</p>
@@ -1241,11 +1356,13 @@
 
       <section id="about">
         <h2>About Nova-Labs Space</h2>
+        <span class="reading-time">1 min read</span>
         <p>Nova-Labs Space, also known as NLS, is a small independent research project dedicated to the fields of astronomy and astrophysics. Founded on May 28, 2025, it began as a modest initiative in the background. Despite our size, we have ambitious goals that can only be achieved with the support and enthusiasm of people like you.</p>
       </section>
 
       <section id="team">
         <h2>Team</h2>
+        <span class="reading-time">1 min read</span>
         <p>Nova-Labs Space is currently a one-person project, founded and led by an enthusiastic space science explorer passionate about astronomy and exoplanet research.</p>
         
         <p>While the team is small for now, there are big plans to expand and welcome collaborators, advisors, and contributors who want to join this journey of discovery.</p>
@@ -1277,6 +1394,39 @@
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </section>
+
+      <!-- Add Glossary section before Contact -->
+      <section id="glossary">
+        <h2>Space Glossary</h2>
+        <span class="reading-time">3 min read</span>
+        <p>Essential terms and concepts in space science and astronomy.</p>
+        <div class="glossary-grid">
+          <div class="glossary-item">
+            <div class="glossary-term">Exoplanet</div>
+            <div class="glossary-definition">A planet that orbits a star other than our Sun. These distant worlds provide insights into planetary formation and the potential for extraterrestrial life.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Transit Method</div>
+            <div class="glossary-definition">A technique for detecting exoplanets by measuring the periodic dimming of a star's light as a planet passes between it and Earth.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Light Year</div>
+            <div class="glossary-definition">The distance light travels in one year, approximately 9.46 trillion kilometers. Used to measure vast cosmic distances.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Solar Wind</div>
+            <div class="glossary-definition">A stream of charged particles released from the Sun's upper atmosphere, affecting space weather and Earth's magnetic field.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Nebula</div>
+            <div class="glossary-definition">A giant cloud of dust and gas in space. These cosmic clouds are where stars are born and where some stars end their lives.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Event Horizon</div>
+            <div class="glossary-definition">The boundary around a black hole beyond which nothing, not even light, can escape its gravitational pull.</div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -1299,6 +1449,9 @@
       </div>
     </footer>
   </div>
+
+  <!-- Add back to top button -->
+  <div class="back-to-top" onclick="scrollToTop()" title="Back to top">↑</div>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
@@ -1626,6 +1779,42 @@
 
     // Load APOD when the page is ready
     document.addEventListener('DOMContentLoaded', loadAPOD);
+
+    // Back to top functionality
+    window.onscroll = function() {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // APOD sharing functionality
+    function shareAPOD(platform) {
+      const title = document.getElementById('apod-title').textContent;
+      const url = window.location.href.split('#')[0] + '#daily-space';
+      
+      if (platform === 'twitter') {
+        window.open(`https://twitter.com/intent/tweet?text=Check out today's NASA Astronomy Picture of the Day: ${title}&url=${encodeURIComponent(url)}`);
+      } else if (platform === 'facebook') {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+      }
+    }
+
+    function copyAPODLink() {
+      const url = window.location.href.split('#')[0] + '#daily-space';
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+      });
+    }
   </script>
 </body>
 </html>
