@@ -1139,12 +1139,13 @@
     /* Back to top button styles */
     .back-to-top {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
       background: var(--accent-color);
       color: white;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1152,18 +1153,31 @@
       cursor: pointer;
       opacity: 0;
       transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translateY(100px);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       z-index: 1000;
+      font-size: 1.4em;
     }
 
     .back-to-top.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
 
     .back-to-top:hover {
-      transform: translateY(-3px);
+      transform: translateX(-50%) translateY(-3px);
+    }
+
+    @media screen and (max-width: 767px) {
+      .utc-display {
+        display: none;  /* Hide clock on mobile */
+      }
+
+      .back-to-top {
+        width: 60px;  /* Even bigger on mobile */
+        height: 60px;
+        font-size: 1.6em;
+        bottom: 40px;
+      }
     }
 
     /* Share buttons styles */
